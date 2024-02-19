@@ -42,4 +42,22 @@ select
     end) ||'년'
 from tblInsa;
 
+
+
+select
+min(decode(
+        substr(ssn,8,1)
+        ,1,
+        substr(ssn,1,2))),
+max(decode(
+        substr(ssn,8,1)
+        ,2,
+        substr(ssn,1,2)))       
+from tblInsa; 
+
+
 select * from tblInsa order by ssn asc;
+
+
+
+
