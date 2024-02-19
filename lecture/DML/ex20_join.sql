@@ -285,10 +285,11 @@ select * from tblRent;
     -(서로 관계를 맺은) 2개(1개) 이상의 테이블을 1개의 결과셋으로 만드는 기술
     
     조인의 종류
-    1. 단순 조인, cross join
+    1. 단순 조인, cross join > ''물리적인 이유로 사용 X
     2. 내부 조인, inner join ***
     3. 외부 조인, outer join ***
-    4. 셀프 조인, self join
+    --------------------------------
+    4. 셀프 조인, self join -> 셀프조인 + 내부조인 / 셀프조인 + 외부조인
     5. 전체 외부 조인, full outer join
     
  /*
@@ -403,16 +404,282 @@ from tblGenre g --부모
                 on r.video = v.seq
                     inner join tblMember m
                         on m.seq = r.member;
+                        
+select * from employees;
+
+select
+    e.first_name || ' ' || e.last_name as 직원명,
+    d.department_name as 부서명,
+    l.city as 도시명,
+    c.country_name as 국가명,
+    r.region_name as 대륙명,
+    j.job_title as 직업명
+from employees e
+    inner join departments d
+        on d.department_id = e.department_id
+            inner join locations l
+                on l.location_id = d.location_id
+                    inner join countries c
+                        on c.country_id = l.country_id
+                            inner join regions r
+                                on r.region_id = c.region_id
+                                    inner join jobs j
+                                        on j.job_id = e.job_id;
 
 
 
+/*
+    3.외부 조인, outer join(***)
+    - 내부 조인의 반댓말 (x)
+    - 내부 조인 결과 + a(내부 조인에 포함되지 않은 부모 테이블의 나머지 레코드)
+    
+    select 
+        컬럼리스트
+    from 테이블A
+        inner join 테이블B
+            on 테이블A.PK = 테이블B.FK;
+            
+    select 
+        컬럼리스트
+    from 테이블A (left|right) outer join 테이블B  
+            on 테이블A.PK = 테이블B.FK;        
+
+
+*/
+
+select * from tblCustomer; --3명
+select * from tblSales; --9건
+
+insert into tblCustomer values(4,'호호호','010-1234-0000', '서울시');
+insert into tblCustomer values(5,'후후후','010-4567-0000', '서울시');
+
+
+--내부조인
+--> "물건을 한번이라도 구매한 이력"이 있는 고객의 정보와 구매 내역을 가져오시오
+-- ''연결된 테이블 모두에 정보가 있어야 레코드가 반환됨
+select * from tblCustomer c
+    inner join tblSales s
+        on c.seq = s.cseq; --9개
+        
+--외부조인 ''대체로 outer는 부모테이블을 가르킨다.
+--> 물건을 한번도 구매 안한 고객의 정보까지도 같이 가져오시오.
+-- ''가르키고 있는 테이블의 정보를 함께 가져옴
+select * from tblCustomer c
+    left outer join tblSales s
+        on c.seq = s.cseq; --11개
+
+-- outer가 자식 테이블을 가리키는 경우 대체로, inner join과 같은 결과가 나옴.
+select * from tblCustomer c
+    right outer join tblSales s
+        on c.seq = s.cseq;
+
+--
+select * from tblStaff; --3명
+select * from tblProject; --6건
+update tblProject set staff_seq = 4 where staff_seq = 3;
+
+--내부조인> 프로젝트를 최소 1건 이상 담당하고 있는 직원 + 프로젝트 정보
+select
+*
+from tblStaff s
+    inner join tblProject p
+        on s.seq = p.staff_seq;
+
+--외부조인 > 담당 프로젝트 유무와 상관없이 모든 직원을 가져오시오. [+ 프로젝트 정보 ]
+select
+*
+from tblStaff s
+    left outer join tblProject p
+        on s.seq = p.staff_seq;
 
 
 
+--비디오 + 대여 > 대여가 한번이라도 발생했던 비디오 + 대여기록
+select * from tblVideo v
+    inner join tblRent r
+        on v.seq = r.video;
+        
+
+--비디오 + 대여 > 대여와 상관없이 모든 비디오 + [대여기록]
+select * from tblVideo v
+    left outer join tblRent r
+        on v.seq = r.video;
+
+-- 회원 + 대여 > 대여를 최소 1회 이상 했던 회원 + [대여기록]
+select * from tblMember m
+    inner join tblRent r
+        on m.seq = r.member;
+
+
+-- 회원 + 대여 > 대여와 무관하게 모든 회원 + [대여기록]
+select * from tblMember m
+    left outer join tblRent r
+        on m.seq = r.member
+            where r.seq is null;
+
+-- 대여 기록이 있는 회원의 이름과 연락처?
+
+select distinct m.name, m.tel from tblMember m
+    inner join tblRent r
+        on m.seq = r.member;
+        
+        
+-- 대여 기록이 있는 회원의 이름과 연락처? + 대여횟수?
+--case1 - 서브쿼리
+select m.name,(select tel from tblMember where name = m.name), count(*) from tblMember m
+    inner join tblRent r
+        on m.seq = r.member
+        group by m.name;
+
+--case2 - 다중그룹
+select m.name,m.tel, count(*) from tblMember m
+    inner join tblRent r
+        on m.seq = r.member
+        group by m.name, m.tel;
+        
+-- +)내림차순 정렬
+select m.name,m.tel, count(*) from tblMember m
+    inner join tblRent r
+        on m.seq = r.member
+        group by m.name, m.tel
+            order by count(*) desc;
+            
+            
+            
+/*
+
+    4. 셀프조인, self join
+    - 1개의 테이블 사용하는 조인
+    - 테이블이 자기 스스로와 관계를 맺는 경우에 사용
+
+*/
+
+--직원 테이블
+
+create table tblSelf(
+    seq number primary key,             --직원번호(PK)
+    name varchar2(30) not null,         --직원명
+    department varchar2(30) not null,    --부서명
+    super number null references tblSelf(seq) --상사번호(FK) -> 자기참조
+);
+
+insert into tblSelf values ( 1, '홍사장','사장실',null );
+insert into tblSelf values ( 2, '김부장','영업부',1 );
+insert into tblSelf values ( 3, '박과장','영업부',2 );
+insert into tblSelf values ( 4, '최대리','영업부',3 );
+insert into tblSelf values ( 5, '정사원','영업부',4 );
+insert into tblSelf values ( 6, '이부장','개발부',1 );
+insert into tblSelf values ( 7, '하과장','개발부',6 );
+insert into tblSelf values ( 8, '신과장','개발부',6 );
+insert into tblSelf values ( 9, '황대리','개발부',7 );
+insert into tblSelf values ( 10, '허사원','개발부',9 );
+
+-- 직원 명단을 가져오시오. 단, 상사의 이름까지
+-- 1. join
+-- 2. sub query
+-- 3. 계층형 쿼리 (오라클 전용) > 나중에 수업
+
+--1.join -> inner
+--자기 참조시 다른 alias를 붙혀야함.
+select
+    s2.name as 직원명,
+    s2.department as 부서명,
+    s1.name as 상사명
+from tblSelf s1             --역할: 부모테이블 > 상사
+    inner join tblSelf s2   --역할: 자식테이블 > 직원
+        on s1.seq = s2.super; --''직원테이블의 홍사장 데이터는 누락
+--1.join -> outer
+select
+    s2.name as 직원명,
+    s2.department as 부서명,
+    s1.name as 상사명
+from tblSelf s1             --역할: 부모테이블 > 상사
+    right outer join tblSelf s2   --역할: 자식테이블 > 직원
+        on s1.seq = s2.super;
+
+--2. sub query
+select
+    name as 직원명,
+    department as 부서명,
+    (select name from tblSelf s1 where seq = s2.seq) as 상사명
+from tblSelf s2;
+
+/*
+    5. 전체 외부 조인, full outer join
+    - 서로 참조하고 있는 관계에서만 사용
+    
+*/
+--''부모자식관계를 임의로 설정해야함.
+select * from tblMen;       --부모
+select * from tblWomen;     --자식
+
+--inner: 커플인 남녀를 가져오세요.
+select
+    m.name as 남자,
+    w.name as 여자
+from tblMen m
+    inner join tblWomen w
+        on m.name = w.couple;
+
+--outer / full outer
+select
+    m.name as 남자,
+    w.name as 여자
+from tblMen m
+--    left outer join tblWomen w --남자솔로 포함
+--    right outer join tblWomen w --여자솔로 포함
+    full outer join tblWomen w --남/녀 솔로 모두 포함
+        on m.name = w.couple;
+        
 
 
 
+--
+drop table tblStaff;
+drop table tblProject;
 
 
+-- 직원 정보
+-- 직원(번호(PK), 직원명, 급여, 거주지)
+create table tblStaff(
+    seq number primary key,     --직원번호(PK)
+    name varchar2(30) not null, --직원명
+    salary number not null,     --급여
+    address varchar2(300) not null  --거주지
+);
+-- 프로젝트(번호(PK), 담당 프로젝트)
+create table tblProject (
+    seq number primary key,         --프로젝트번호(PK)
+    project varchar2(100) not null, --프로젝트명
+    staff_seq number null           --담당직원번호
+);
+
+insert into tblStaff (seq, name, salary, address) values (1, '홍길동',300,'서울시');
+insert into tblStaff (seq, name, salary, address) values (2, '아무개',250,'인천시');
+insert into tblStaff (seq, name, salary, address) values (3, '하하하',350,'부산시');
+
+insert into tblProject (seq, project, staff_seq) values (1, '홍콩 수출',1); --홍길동
+insert into tblProject (seq, project, staff_seq) values (2, 'TV 광고',2); --아무개
+insert into tblProject (seq, project, staff_seq) values (3, '매출 분석',3); --하하하
+insert into tblProject (seq, project, staff_seq) values (4, '노조 협상',1); --홍길동
+insert into tblProject (seq, project, staff_seq) values (5, '대리점 분양',2); -- 아무개
+
+insert into tblStaff (seq, name, salary, address) values (4, '호호호',350,'부산시');
+insert into tblStaff (seq, name, salary, address) values (5, '후후후',350,'부산시');
+
+insert into tblProject (seq, project, staff_seq) values (6, '재고 관리',null); -- 아무개
+insert into tblProject (seq, project, staff_seq) values (7, '가격 인상',null); -- 아무개
+insert into tblProject (seq, project, staff_seq) values (8, '신제품 개발',null); -- 아무개
 
 
+select * from tblStaff;
+
+select * from tblProject;
+
+
+select * from tblStaff s inner join tblProject p on s.seq = p.staff_seq; -- 담당자가 있는 프로젝트
+select * from tblStaff s left outer join tblProject p on s.seq = p.staff_seq; 
+select * from tblStaff s right outer join tblProject p on s.seq = p.staff_seq;
+select * from tblStaff s full outer join tblProject p on s.seq = p.staff_seq;
+
+        
