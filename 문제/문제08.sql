@@ -75,18 +75,41 @@ from tblCustomer c
         where s.qty >= 2;
 
 -- 7. tblVideo, tblRent, tblGenre. 모든 비디오 제목, 보유수량, 대여가격을 가져오시오.
- select
-    v.name,
+select name from tblVideo;
+select
+    distinct(v.name),
     v.qty,
     g.price
- from tblGenre g
-    left outer join tblVideo v
+from tblGenre g
+    right outer join tblVideo v
         on g.seq = v.genre
             left outer join tblRent r
                 on v.seq = r.video;
   
 -- 8. tblVideo, tblRent, tblMember, tblGenre. 2007년 2월에 대여된 구매내역을 가져오시오. 회원명, 비디오명, 언제, 대여가격
-        
+select * from tblGenre;        
+select * from tblVideo;
+select * from tblRent;        
+select * from tblMember;
+
+select 
+    m.name,
+    v.name,
+    r.rentdate,
+    g.price
+from tblGenre g
+    inner join tblVideo v
+        on g.seq = v.genre
+            inner join tblRent r
+                on v.seq = r.video
+                    inner join tblMember m
+                        on m.seq = r.member
+        where r.rentdate = ; 
+
+
+
+
+
 
 -- 9. tblVideo, tblRent, tblMember. 현재 반납을 안한 회원명과 비디오명, 대여날짜를 가져오시오.
     

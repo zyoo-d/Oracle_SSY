@@ -270,6 +270,7 @@ create sequence genreSeq;
 create sequence videoSeq;
 create sequence memberSeq;
 create sequence rentSeq;
+drop sequence rentSeq;
 
 select * from tblCustomer;
 select * from tblSales;
