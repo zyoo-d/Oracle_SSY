@@ -1,26 +1,89 @@
 -- ### join ###################################
 
-
 -- 1. tblStaff, tblProject. 현재 재직중인 모든 직원의 이름, 주소, 월급, 담당프로젝트명을 가져오시오.
+
+select
+    s.name,
+    s.address,
+    s.salary,
+    p.project
+from tblStaff s
+    left outer join tblProject p
+        on s.seq = p.staff_seq;
        
        
 -- 2. tblVideo, tblRent, tblMember. '뽀뽀할까요' 라는 비디오를 빌려간 회원의 이름은?
+select
+    m.name
+from tblMember m
+    inner join tblRent r
+        on m.seq = r.member
+            inner join tblVideo v
+                on v.seq = r.video
+    where v.name = '뽀뽀할까요';
     
     
 -- 3. tblStaff, tblProejct. 'TV 광고'을 담당한 직원의 월급은 얼마인가?
-    
-    
+select
+    s.name,
+    s.salary
+from tblStaff s
+    inner join tblProject p
+        on s.seq = p.staff_seq
+    where p.project = 'TV 광고';
+  
 -- 4. tblVideo, tblRent, tblMember. '털미네이터' 비디오를 한번이라도 빌려갔던 회원들의 이름은?
+select * from tblVideo;
+select * from tblRent;
+select * from tblMember;
 
+select
+m.name
+from tblVideo v
+    right outer join tblRent r
+        on v.seq = r.video
+        inner join tblMember m
+            on m.seq = r.member
+    where v.name = '털미네이터';
+    
                 
 -- 5. tblStaff, tblProject. 서울시에 사는 직원을 제외한 나머지 직원들의 이름, 월급, 담당프로젝트명을 가져오시오.
-    
+       select * from tblStaff;
+       select * from tblProject; 
+ select
+    s.name,
+    s.salary,
+    p.project
+from tblStaff s
+    left outer join tblProject p
+        on s.seq = p.staff_seq
+    where s.address not like ('%서울%'); 
     
 -- 6. tblCustomer, tblSales. 상품을 2개(단일상품) 이상 구매한 회원의 연락처, 이름, 구매상품명, 수량을 가져오시오.
-                
-                
+select * from tblCustomer;
+select * from tblSales;
+--판매내역 고객번호로 그룹바이 > 카운트 > 2이상인것 가져오기?
+
+select
+    c.name,
+    c.tel,
+    s.item,
+    s.qty
+from tblCustomer c 
+    right outer join tblSales s
+        on c.seq = s.cseq
+        where s.qty >= 2;
+
 -- 7. tblVideo, tblRent, tblGenre. 모든 비디오 제목, 보유수량, 대여가격을 가져오시오.
-              
+ select
+    v.name,
+    v.qty,
+    g.price
+ from tblGenre g
+    left outer join tblVideo v
+        on g.seq = v.genre
+            left outer join tblRent r
+                on v.seq = r.video;
   
 -- 8. tblVideo, tblRent, tblMember, tblGenre. 2007년 2월에 대여된 구매내역을 가져오시오. 회원명, 비디오명, 언제, 대여가격
         
