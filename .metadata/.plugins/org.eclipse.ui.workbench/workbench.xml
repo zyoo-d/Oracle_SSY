@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="5" version="2.0">
+<workbench progressCount="16" version="2.0">
 <workbenchAdvisor/>
-<window height="1039" width="1740" x="-7" y="0">
+<window height="1039" width="836" x="1091" y="0">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -11,7 +11,7 @@
 <coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="99" y="22"/>
 <coolItem id="additions" itemType="typeGroupMarker"/>
 <coolItem id="com.tomato.devkit.toolbar" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="53" y="22"/>
 <coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="53" y="22"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="114" y="22"/>
@@ -27,15 +27,27 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="com.tomato.exerd.editor.DiagramEditor" name="조인.exerd" partName="조인.exerd" path="C:/class/code/oracle/eXERD-Samples/조인.exerd" title="조인.exerd" tooltip="eXERD-Samples/조인.exerd" workbook="DefaultEditorWorkbook">
+<editor id="com.tomato.exerd.editor.DiagramEditor" name="조인.exerd" partName="조인.exerd" path="C:/class/code/oracle/eXERD-Samples/조인.exerd" title="조인.exerd" tooltip="eXERD-Samples/조인.exerd" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/eXERD-Samples/조인.exerd"/>
 </editor>
-<editor id="com.tomato.exerd.editor.DiagramEditor" name="hr.exerd" partName="hr.exerd" path="C:/class/code/oracle/eXERD-Samples/hr.exerd" title="hr.exerd" tooltip="eXERD-Samples/hr.exerd" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="com.tomato.exerd.editor.DiagramEditor" name="hr.exerd" partName="hr.exerd" path="C:/class/code/oracle/eXERD-Samples/hr.exerd" title="hr.exerd" tooltip="eXERD-Samples/hr.exerd" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/eXERD-Samples/hr.exerd"/>
+</editor>
+<editor id="com.tomato.exerd.editor.DiagramEditor" name="study.exerd" partName="study.exerd" path="C:/class/code/oracle/eXERD-Samples/study.exerd" title="study.exerd" tooltip="eXERD-Samples/study.exerd" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/eXERD-Samples/study.exerd"/>
+</editor>
+<editor id="com.tomato.exerd.editor.DiagramEditor" name="pos.exerd" partName="pos.exerd" path="C:/class/code/oracle/eXERD-Samples/pos.exerd" title="pos.exerd" tooltip="eXERD-Samples/pos.exerd" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/eXERD-Samples/pos.exerd"/>
+</editor>
+<editor id="com.tomato.exerd.term.ui.editor2.TermDictionaryEditor2" name="study.xdic" partName="study.xdic" path="C:/class/code/oracle/eXERD-Samples/study.xdic" title="study.xdic" tooltip="eXERD-Samples/study.xdic" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/eXERD-Samples/study.xdic"/>
 </editor>
 </editors>
 <views>
@@ -44,6 +56,12 @@
 <filters>
 <filter element=".*" isEnabled="false"/>
 </filters>
+<expanded>
+<element path="/eXERD-Samples"/>
+</expanded>
+<selection>
+<element path="/eXERD-Samples/조인.exerd"/>
+</selection>
 </viewState>
 </view>
 <view id="com.tomato.exerd.ui.views.thumbnail" partName="썸네일">
@@ -117,8 +135,8 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.18" ratioLeft="180" ratioRight="820" relationship="2" relative="leftFolder"/>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@160bcdf" ratio="0.77926826" ratioLeft="639" ratioRight="181" relationship="2" relative="org.eclipse.ui.editorss">
+<info part="org.eclipse.ui.editorss" ratio="0.18661971" ratioLeft="106" ratioRight="462" relationship="2" relative="leftFolder"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@160bcdf" ratio="0.7690632" ratioLeft="353" ratioRight="106" relationship="2" relative="org.eclipse.ui.editorss">
 <folder activePageID="com.tomato.exerd.ui.views.thumbnail" appearance="2" expanded="2">
 <page content="com.tomato.exerd.ui.views.thumbnail" label="썸네일"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
@@ -168,12 +186,33 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" path="/eXERD-Samples/study.exerd"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" path="/eXERD-Samples/조인.exerd"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" path="/eXERD-Samples/hr.exerd"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" path="/eXERD-Samples/study.exerd"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" path="/eXERD-Samples/hr.exerd"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" path="/eXERD-Samples/pos.exerd"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.term.ui.editor2.TermDictionaryEditor2" path="/eXERD-Samples/study.xdic"/>
 </editors>
 <item historyLabel="pos.exerd" index="0"/>
 <item historyLabel="study.exerd" index="1"/>
 <item historyLabel="조인.exerd" index="2"/>
 <item historyLabel="hr.exerd" index="3"/>
-<item active="true" historyLabel="조인.exerd" index="2"/>
+<item historyLabel="조인.exerd" index="2"/>
+<item historyLabel="study.exerd" index="4"/>
+<item historyLabel="조인.exerd" index="2"/>
+<item historyLabel="hr.exerd" index="5"/>
+<item historyLabel="pos.exerd" index="6"/>
+<item historyLabel="study.xdic" index="7"/>
+<item historyLabel="study.exerd" index="4"/>
+<item historyLabel="조인.exerd" index="2"/>
+<item historyLabel="study.exerd" index="4"/>
+<item historyLabel="study.xdic" index="7"/>
+<item historyLabel="study.exerd" index="4"/>
+<item historyLabel="hr.exerd" index="5"/>
+<item historyLabel="pos.exerd" index="6"/>
+<item historyLabel="study.exerd" index="4"/>
+<item historyLabel="조인.exerd" index="2"/>
+<item historyLabel="study.exerd" index="4"/>
+<item historyLabel="pos.exerd" index="6"/>
+<item active="true" historyLabel="hr.exerd" index="5"/>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
@@ -191,17 +230,20 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.term.ui.editor2.TermDictionaryEditor2" name="study.xdic" tooltip="eXERD-Samples/study.xdic">
+<persistable path="/eXERD-Samples/study.xdic"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" name="pos.exerd" tooltip="eXERD-Samples/pos.exerd">
+<persistable path="/eXERD-Samples/pos.exerd"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" name="study.exerd" tooltip="eXERD-Samples/study.exerd">
+<persistable path="/eXERD-Samples/study.exerd"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" name="hr.exerd" tooltip="eXERD-Samples/hr.exerd">
 <persistable path="/eXERD-Samples/hr.exerd"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" name="조인.exerd" tooltip="eXERD-Samples/조인.exerd">
 <persistable path="/eXERD-Samples/조인.exerd"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" name="study.exerd" tooltip="eXERD-Samples/study.exerd">
-<persistable path="/eXERD-Samples/study.exerd"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" name="pos.exerd" tooltip="eXERD-Samples/pos.exerd">
-<persistable path="/eXERD-Samples/pos.exerd"/>
 </file>
 </mruList>
 </workbench>
