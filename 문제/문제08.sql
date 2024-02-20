@@ -104,7 +104,7 @@ from tblGenre g
                 on v.seq = r.video
                     inner join tblMember m
                         on m.seq = r.member
-        where r.rentdate = ; 
+        where extract(month,r.rentdate) = 02; 
 
 
 
