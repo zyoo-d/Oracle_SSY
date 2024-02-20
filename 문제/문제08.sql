@@ -93,10 +93,10 @@ select * from tblRent;
 select * from tblMember;
 
 select 
-    m.name,
-    v.name,
-    r.rentdate,
-    g.price
+    m.name as 회원명,
+    v.name as 비디오명,
+    r.rentdate as 대여날짜,
+    g.price as 대여가격
 from tblGenre g
     inner join tblVideo v
         on g.seq = v.genre
@@ -104,24 +104,63 @@ from tblGenre g
                 on v.seq = r.video
                     inner join tblMember m
                         on m.seq = r.member
-        where extract(month,r.rentdate) = 02; 
-
-
-
-
+        where to_char(r.rentdate,'yyyymm') = '200702'; 
 
 
 -- 9. tblVideo, tblRent, tblMember. 현재 반납을 안한 회원명과 비디오명, 대여날짜를 가져오시오.
+
+select 
+    m.name as 회원명,
+    v.name as 비디오명,
+    r.rentdate as 대여날짜
+from tblGenre g
+    inner join tblVideo v
+        on g.seq = v.genre
+            inner join tblRent r
+                on v.seq = r.video
+                    inner join tblMember m
+                        on m.seq = r.member
+        where r.retdate is null;
     
     
 -- 10. employees, departments. 사원들의 이름, 부서번호, 부서명을 가져오시오.
-        
+select * from employees;
+select * from departments;
+
+select
+    e.last_name || ' ' || e.first_name as 사원명,
+    d.department_id as 부서번호,
+    d.department_name as 부서명
+from employees e
+    left outer join departments d
+        on e.department_id = d.department_id;
+    
         
 -- 11. employees, jobs. 사원들의 정보와 직업명을 가져오시오.
-        
+select distinct(job_id) from employees;
+select * from jobs;
+
+select
+e.*,
+j.job_title
+from jobs j
+    right outer join employees e
+        on j.job_id = e.job_id;
         
 -- 12. employees, jobs. 직무(job_id)별 최고급여(max_salary) 받는 사원 정보를 가져오시오.
-    
+--QQ나중에
+
+select
+e.*
+from jobs j
+    right outer join employees e
+        on j.job_id = e.job_id
+        where e.job_id is not null
+              and e.salary is (select max(salary) from employees where e.job_id is not null group by job_id) ;
+
+--        group by e.job_id;
+--            having
+
     
 -- 13. departments, locations. 모든 부서와 각 부서가 위치하고 있는 도시의 이름을 가져오시오.
         

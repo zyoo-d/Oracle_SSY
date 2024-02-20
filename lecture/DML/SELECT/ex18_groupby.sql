@@ -137,7 +137,7 @@ select
     end,
     count(*)
 from tblTodo
-     group by case --select 이후에 실행됨, 별칭으로 대신할 수 없음
+     group by case --select 이후에 실행됨, -> 별칭으로 대신할 수 없음
         when completedate is not null then 1
         else 2
     end;

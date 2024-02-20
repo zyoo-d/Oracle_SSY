@@ -25,6 +25,7 @@ select sysdate from dual;
 
 --1. 시각- 시각 = 시간 (일)
 -- 현재 - 입사일
+select * from tblInsa;
 select
     name,
     to_char(ibsadate, 'yyyy-mm-dd') as 입사일,

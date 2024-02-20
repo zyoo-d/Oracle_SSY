@@ -61,11 +61,17 @@ where rownum <= 3;           --> 반드시 1포함해서 가져와야함
 --1.로우넘에 엘리아스 붙히기 > inline view로 만들기 > 2.원하는 컬럼과 rownum 다시 생성
 -->외부로우넘에 alias 붙히기 > 한번더 서브쿼리로 만들기 > 내부로우넘을 조건으로 where절 작성
 select name, basicpay, rnum1,rnum2, rownum from
-(select name, basicpay, rnum1, rownum as rnum2 from
-(select name, basicpay, rownum as rnum1
-from tblInsa                    
-order by basicpay desc))
+    (select name, basicpay, rnum1, rownum as rnum2 from
+        (select name, basicpay, rownum as rnum1
+            from tblInsa                    
+                order by basicpay desc))
     where rnum2 = 5;
+
+
+
+
+
+
 
 --정리!
 --1포함 가져오기
