@@ -140,7 +140,7 @@ insert into vmCheck( 회원,비디오,언제,반납,반납예정, 연체일, 연
     테이블 > 5개(tblMember, tblBoard, tblLog,tblCheck, tblPrice)
     뷰 > 테이블 X N개
 
-
+    --> 뷰가 아주아주 많이 생김!!
 
 
 */
