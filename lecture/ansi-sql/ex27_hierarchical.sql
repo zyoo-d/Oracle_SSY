@@ -7,6 +7,14 @@
     - (보편적으로) 자기 참조를 하는 테이블에서 사용(셀프 조인)
     - 자바 (=트리구조)
     
+    
+    
+    자기참조 테이블(계층형 쿼리 사용)유무
+    - depth 고정 > 사용 X or O (''반드시 자기참조를 할 필요는 없다 > depth의 크기만큼 table수를 만들어서 해결)
+    - depth 미정 > 사용 O
+
+
+
     ex.tblSelf
     홍사장
         -김부장
@@ -17,8 +25,21 @@
         .
         .
         .
-        
-
+    ex.       
+    컴퓨터
+         모니터
+              모니터암
+              모니터클리너
+              보호필름
+         본체
+              CPU
+              그래픽카드
+              랜카드
+              메모리
+              메인보드
+         프린터
+              A4용지
+              잉크카트리지
 
 */
 --자기참조
@@ -84,12 +105,55 @@ from tblSelf
         connect by super = prior seq;
         
         
+-- 카테고리(''depth가 정해진 경우, 계층형 쿼리대신 테이블 생성하여 데이터 조작하기)
+create table tblCategoryBig (
+    seq number primary key,         --식별자(PK)
+    name varchar2(100) not null
+);
+
+
+create table tblCategoryMedium (
+    seq number primary key,
+    name varchar2(100) not null,
+    pseq number not null references tblCategoryBig(seq)
+);
+
+
+create table tblCategorySmall (
+    seq number primary key,
+    name varchar2(100) not null,
+    pseq number not null references tblCategoryMedium(seq)
+);
+
+--''모든 부모가 모든 자식과 이어져 있음 -> inner join 과 outer join의 결과가 똑같음    
+insert into tblCategoryBig values (1, '카테고리');
+
+insert into tblCategoryMedium values (1, '컴퓨터용품', 1);
+insert into tblCategoryMedium values (2, '운동용품', 1);
+insert into tblCategoryMedium values (3, '먹거리', 1);
+
+insert into tblCategorySmall values (1, '하드웨어', 1);
+insert into tblCategorySmall values (2, '소프트웨어', 1);
+insert into tblCategorySmall values (3, '소모품', 1);
+
+insert into tblCategorySmall values (4, '테니스', 2);
+insert into tblCategorySmall values (5, '골프', 2);
+insert into tblCategorySmall values (6, '달리기', 2);
+
+insert into tblCategorySmall values (7, '밀키트', 3);
+insert into tblCategorySmall values (8, '베이커리', 3);
+insert into tblCategorySmall values (9, '도시락', 3);        
         
         
-        
-        
-        
-        
+select
+    b.name as 상,
+    m.name as 중,
+    s.name as 하
+from tblCategoryBig b
+    inner join tblCategoryMedium m
+        on b.seq = m.pseq
+            inner join tblCategorySmall s
+                on m.seq = s.pseq;
         
         
         
