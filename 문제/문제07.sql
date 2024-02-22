@@ -23,7 +23,17 @@ select * from tblWomen;
 -- 3. tblAddressBook. 가장 많은 사람들이 가지고 있는 직업은 주로 어느 지역 태생(hometown)인가?
 select * from tblAddressBook;
 
---select hometown from  tblAddressBook where job = (select count(*) from tblAddressBook group by job);
+
+select 
+  max(cnt),hometown
+    from (
+    select hometown, count(*) as cnt
+    from tblAddressBook
+        group by job, hometown
+        order by count(*) desc)
+        group by hometown;
+
+    
 
 -- 4. tblAddressBook. 이메일 도메인들 중 평균 아이디 길이가 가장 긴 이메일 사이트의 도메인은 무엇인가?
 
