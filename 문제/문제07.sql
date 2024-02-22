@@ -1,25 +1,14 @@
 -- ### subquery ###################################
-select
-    e.first_name || ' ' || e.last_name as 직원명,
-    d.department_name as 부서명,
-    l.city as 도시명,
-    c.country_name as 국가명,
-    r.region_name as 대륙명,
-    j.job_title as 직업명
-from employees e
-    inner join departments d
-        on d.department_id = e.department_id
-            inner join locations l
-                on l.location_id = d.location_id
-                    inner join countries c
-                        on c.country_id = l.country_id
-                            inner join regions r
-                                on r.region_id = c.region_id
-                                    inner join jobs j
-                                        on j.job_id = e.job_id;
 
 -- 1. employees. 'Munich' 도시에 위치한 부서에 소속된 직원들 명단?
-select * from employees;
+select * from departments;
+select * from locations;
+
+select * from employees
+            where department_id = (select department_id from departments
+                                                        where location_id = (select location_id from locations where city = 'Munich'));
+
+
 -- 2. tblMen. tblWomen. 서로 짝이 있는 사람 중 남자와 여자의 정보를 모두 가져오시오.
 --    [남자]        [남자키]   [남자몸무게]     [여자]    [여자키]   [여자몸무게]
 --    홍길동         180       70              장도연     177        65
@@ -27,16 +16,14 @@ select * from employees;
 --    ..
 select * from tblMen;
 select * from tblWomen;
+--select *,  from tblWomen where name in ((select * from tblMen where couple is not null) m);
 
-select m.name,
-    m.height,
-    m.weight
-from tblMen
-    while (select name from tblWomen where name = m.couple);
 
 
 -- 3. tblAddressBook. 가장 많은 사람들이 가지고 있는 직업은 주로 어느 지역 태생(hometown)인가?
+select * from tblAddressBook;
 
+--select hometown from  tblAddressBook where job = (select count(*) from tblAddressBook group by job);
 
 -- 4. tblAddressBook. 이메일 도메인들 중 평균 아이디 길이가 가장 긴 이메일 사이트의 도메인은 무엇인가?
 
