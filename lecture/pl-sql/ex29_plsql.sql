@@ -1699,3 +1699,144 @@ end;
 
 select * from tblStaff;
 select * from tblProject;
+
+-- 회원 테이블 + 게시판 테이블
+-- 포인트 정책
+-- 1. 글 작성 > 포인트 + 100
+-- 2. 글 삭제 > 포인트 - 50
+
+--1.테이블 생성
+create table tblUser(
+    id varchar2(30) not null,
+    point number not null
+
+);
+
+--2.제약사항
+alter table tblUser
+    add constraint tbl_user_id_pk primary key(id);
+
+create table tblBoard(
+    seq number not null,
+    subject varchar2(2000) not null,
+    id varchar2(30) not null
+);
+
+alter table tblBoard
+    add constraint tblboard_seq_pk primary key(seq);
+    
+alter table tblBoard add constraint tblboard_id_fk foreign key(id) references tblUser(id);
+
+create sequence seqBoard;
+drop sequence seqBoard;
+
+
+--3.
+insert into tblUser values ('hong', 1000);
+
+-- a. 글을쓴다.( c. 삭제한다)
+-- b. 포인트를 누적한다.( d. 차감한다.)
+
+--> case 1. harding coding
+-- 개발자직접제어 > ansi-sql
+--1.a 글쓰기
+insert into tblBoard values (seqBoard.nextVal, '게시판입니다.','hong');
+
+--1.b 포인트 누적하기
+update tblUser set point = point + 100 where id = 'hong';
+
+--1.c 글삭제하기
+delete from tblBoard where seq = '1';
+
+--1.d 포인트 차감하기
+update tblUser set point = point - 50 where id = 'hong';
+
+select * from tblBoard;
+select * from tblUser;
+
+--case2. 프로시저
+-- 글작성 프로시저 생성
+create or replace procedure procAddBoard(
+    pid varchar2,
+    psubject varchar2
+)
+is
+begin
+    --2.a 글쓰기
+    insert into tblBoard values (seqBoard.nextVal, psubject,pid);
+    --2.b 포인트 누적하기
+    update tblUser set point = point + 100 where id = pid;
+end procAddBoard;
+/
+
+-- 글삭제 프로시저 생성
+create or replace procedure procDeleteBoard(
+    pseq number
+)
+is
+    vid tblUser.id%type;
+begin
+
+    select id into vid from tblBoard where seq = pseq; --삭제하려는 글의 작성자 아이디를 호출하고 프로시저 변수에 저장한다.
+    
+    --2.c 글삭제하기
+    delete from tblBoard where seq = pseq;
+    
+    --2.d 포인트 차감하기
+    update tblUser set point = point - 50 where id = vid;
+
+end procDeleteBoard;
+/
+
+-- 호출
+begin
+--글작성 프로시저 호출
+--    procAddBoard('hong','안녕하세요');
+--글삭제 프로시저 호출
+    procDeleteBoard(21); --삭제할게시판 번호
+end;
+/
+select * from tblBoard;
+
+
+--Case 3. 트리거 + 사건(ANSI-SQL)
+--''트리거는 매개변수를 받을 수 없음 -> 특정사건에 대해 예약한 행동을 구현하거나, 사건의 특정 컬럼을 받아오는 것만 할 수 있음(by. new,old 참조)
+--''
+--1. 포인트 누적/차감 트리거 생성
+create or replace trigger trgBoard
+    after
+    insert or delete
+    on tblBoard
+    for each row
+begin
+    if inserting then
+        update tblUser set point = point + 100 where id = :new.id;
+    elsif deleting then
+        update tblUser set point = point - 50 where id = :old.id;     
+    end if;    
+end trgBoard;
+/
+--글 작성
+insert into tblBoard values (seqBoard.nextVal, '금요일입니다.','hong');
+select * from tblBoard; --22	금요일입니다.	hong
+select * from tblUser; -- hong	1200
+
+--글 삭제
+delete tblBoard where seq = 22;
+select * from tblUser; -- hong	1150
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

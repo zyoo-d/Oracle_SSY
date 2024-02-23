@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="16" version="2.0">
+<workbench progressCount="14" version="2.0">
 <workbenchAdvisor/>
-<window height="1039" width="1705" x="-7" y="0">
+<window height="910" maximized="true" width="1534" x="458" y="40">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -35,9 +35,6 @@
 </folder>
 </info>
 </editorArea>
-<editor id="com.tomato.exerd.editor.DiagramEditor" name="조인.exerd" partName="조인.exerd" path="C:/class/code/oracle/eXERD-Samples/조인.exerd" title="조인.exerd" tooltip="eXERD-Samples/조인.exerd" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/eXERD-Samples/조인.exerd"/>
-</editor>
 <editor id="com.tomato.exerd.editor.DiagramEditor" name="hr.exerd" partName="hr.exerd" path="C:/class/code/oracle/eXERD-Samples/hr.exerd" title="hr.exerd" tooltip="eXERD-Samples/hr.exerd" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/eXERD-Samples/hr.exerd"/>
 </editor>
@@ -50,7 +47,10 @@
 <editor id="com.tomato.exerd.term.ui.editor2.TermDictionaryEditor2" name="study.xdic" partName="study.xdic" path="C:/class/code/oracle/eXERD-Samples/study.xdic" title="study.xdic" tooltip="eXERD-Samples/study.xdic" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/eXERD-Samples/study.xdic"/>
 </editor>
-<editor activePart="true" focus="true" id="com.tomato.exerd.editor.DiagramEditor" name="비디오대여점.exerd" partName="비디오대여점.exerd" path="C:/class/code/oracle/eXERD-Samples/비디오대여점.exerd" title="비디오대여점.exerd" tooltip="eXERD-Samples/비디오대여점.exerd" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="com.tomato.exerd.editor.DiagramEditor" name="movie.fix.exerd" partName="movie.fix.exerd" title="movie.fix.exerd" tooltip="C:\class\code\oracle\eXERD-Samples\movie.fix.exerd" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" uri="file:/C:/class/code/oracle/eXERD-Samples/movie.fix.exerd"/>
+</editor>
+<editor id="com.tomato.exerd.editor.DiagramEditor" name="비디오대여점.exerd" partName="비디오대여점.exerd" path="C:/class/code/oracle/eXERD-Samples/비디오대여점.exerd" title="비디오대여점.exerd" tooltip="eXERD-Samples/비디오대여점.exerd" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/eXERD-Samples/비디오대여점.exerd"/>
 </editor>
 </editors>
@@ -64,7 +64,7 @@
 <element path="/eXERD-Samples"/>
 </expanded>
 <selection>
-<element path="/eXERD-Samples/조인.exerd"/>
+<element path="/eXERD-Samples/비디오대여점.exerd"/>
 </selection>
 </viewState>
 </view>
@@ -139,7 +139,7 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info part="org.eclipse.ui.editorss" ratio="0.18661971" ratioLeft="106" ratioRight="462" relationship="2" relative="leftFolder"/>
+<info part="org.eclipse.ui.editorss" ratio="0.14004767" ratioLeft="235" ratioRight="1443" relationship="2" relative="leftFolder"/>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@160bcdf" ratio="0.7690632" ratioLeft="353" ratioRight="106" relationship="2" relative="org.eclipse.ui.editorss">
 <folder activePageID="com.tomato.exerd.ui.views.thumbnail" appearance="2" expanded="2">
 <page content="com.tomato.exerd.ui.views.thumbnail" label="썸네일"/>
@@ -159,7 +159,7 @@
 </folder>
 </info>
 <info folder="true" part="bottomFolder" ratio="0.6996904" ratioLeft="452" ratioRight="194" relationship="4" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<folder activePageID="com.tomato.exerd.ui.views.domain" appearance="2" expanded="2">
 <page content="com.tomato.exerd.ui.views.domain" label="도메인"/>
 <page content="com.tomato.exerd.validate.ui.ValidateView" label="검토"/>
 <page content="org.eclipse.ui.console.ConsoleView" label="콘솔"/>
@@ -195,6 +195,10 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" path="/eXERD-Samples/pos.exerd"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.term.ui.editor2.TermDictionaryEditor2" path="/eXERD-Samples/study.xdic"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" path="/eXERD-Samples/비디오대여점.exerd"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" path="/eXERD-Samples/조인.exerd"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" path="/eXERD-Samples/hr.exerd"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" path="/eXERD-Samples/movie.exerd"/>
+<editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" uri="file:/C:/class/code/oracle/eXERD-Samples/movie.fix.exerd"/>
 </editors>
 <item historyLabel="pos.exerd" index="0"/>
 <item historyLabel="study.exerd" index="1"/>
@@ -218,7 +222,17 @@
 <item historyLabel="study.exerd" index="4"/>
 <item historyLabel="pos.exerd" index="6"/>
 <item historyLabel="hr.exerd" index="5"/>
-<item active="true" historyLabel="비디오대여점.exerd" index="8"/>
+<item historyLabel="비디오대여점.exerd" index="8"/>
+<item historyLabel="조인.exerd" index="9"/>
+<item historyLabel="hr.exerd" index="10"/>
+<item historyLabel="movie.exerd" index="11"/>
+<item historyLabel="비디오대여점.exerd" index="8"/>
+<item historyLabel="movie.exerd(읽기 전용)" index="11"/>
+<item historyLabel="비디오대여점.exerd" index="8"/>
+<item historyLabel="hr.exerd" index="10"/>
+<item historyLabel="movie.fix.exerd" index="12"/>
+<item historyLabel="비디오대여점.exerd" index="8"/>
+<item active="true" historyLabel="movie.fix.exerd" index="12"/>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
@@ -238,6 +252,12 @@
 <mruList>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" name="비디오대여점.exerd" tooltip="eXERD-Samples/비디오대여점.exerd">
 <persistable path="/eXERD-Samples/비디오대여점.exerd"/>
+</file>
+<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" name="movie.fix.exerd" tooltip="C:\class\code\oracle\eXERD-Samples\movie.fix.exerd">
+<persistable uri="file:/C:/class/code/oracle/eXERD-Samples/movie.fix.exerd"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.editor.DiagramEditor" name="movie.exerd" tooltip="eXERD-Samples/movie.exerd">
+<persistable path="/eXERD-Samples/movie.exerd"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.tomato.exerd.term.ui.editor2.TermDictionaryEditor2" name="study.xdic" tooltip="eXERD-Samples/study.xdic">
 <persistable path="/eXERD-Samples/study.xdic"/>
