@@ -1566,7 +1566,7 @@ begin
     --dbms_output.put_line('trgDiary 호출됨');
     
     if inserting then
-        --dbms_output.put_line('trgDiary 호출됨 - 삽입');
+--        dbms_output.put_line('trgDiary 호출됨 - 삽입');
         vmessage := '새로운 항목이 추가되었습니다.';
     elsif updating then
         --dbms_output.put_line('trgDiary 호출됨 - 수정');
