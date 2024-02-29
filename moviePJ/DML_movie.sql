@@ -117,7 +117,6 @@ insert into tblMovieCountry(seq, cseq, mseq) values ((select nvl(max(seq),0)+1 f
 
 
 --tblActor(seq number primary key,name varchar2(50) not null,masterpiece varchar2(100) default '미등록');
-delete from tblActor;
 insert into tblActor(seq, name, masterpiece) values ((select nvl(max(seq),0)+1 from tblActor), '티모테 샬라메', '듄: 파트2');
 insert into tblActor(seq, name, masterpiece) values ((select nvl(max(seq),0)+1 from tblActor), '칼라 레인', default);
 insert into tblActor(seq, name, masterpiece) values ((select nvl(max(seq),0)+1 from tblActor), '올리비아 콜맨', '장화신은 고양이: 끝내주는 모험');
@@ -829,12 +828,12 @@ insert into tblMovieDirector(seq, dseq, mseq) values ((select nvl(max(seq),0)+1 
 insert into tblMovieDirector(seq, dseq, mseq) values ((select nvl(max(seq),0)+1 from tblMovieDirector), 53, 50);
 
 
-
 --tblTitle(seq number primary key,kr varchar2(100) not null,eng varchar2(100),etc varchar2(100));
 insert into tblTitle(seq, kr,eng,etc) values ((select nvl(max(seq),0)+1 from tblTitle), '웡카','Wonka','');
 insert into tblTitle(seq, kr,eng,etc) values ((select nvl(max(seq),0)+1 from tblTitle), '건국전쟁','The Birth of Korea','');
 insert into tblTitle(seq, kr,eng,etc) values ((select nvl(max(seq),0)+1 from tblTitle), '귀멸의 칼날: 인연의 기적, 그리고 합동 강화 훈련으로','Demon Slayer: Kimetsu no Yaiba To The Hashira Training','');
 insert into tblTitle(seq, kr,eng,etc) values ((select nvl(max(seq),0)+1 from tblTitle), '시민덕희','Citizen of a Kind','');
+insert into tblTitle(seq, kr,eng,etc) values ((select nvl(max(seq),0)+1 from tblTitle), '소풍','Picnic','');
 insert into tblTitle(seq, kr,eng,etc) values ((select nvl(max(seq),0)+1 from tblTitle), '도그데이즈','Dog Days','');
 insert into tblTitle(seq, kr,eng,etc) values ((select nvl(max(seq),0)+1 from tblTitle), '아기상어 극장판: 사이렌 스톤의 비밀','Baby Shark’s Big Movie','');
 insert into tblTitle(seq, kr,eng,etc) values ((select nvl(max(seq),0)+1 from tblTitle), '사운드 오브 프리덤','Sound of Freedom','');
@@ -933,3 +932,215 @@ insert into tblMovieTitle(seq, tseq, mseq) values ((select nvl(max(seq), 0)+1 fr
 insert into tblMovieTitle(seq, tseq, mseq) values ((select nvl(max(seq), 0)+1 from tblMovieTitle),48,48);
 insert into tblMovieTitle(seq, tseq, mseq) values ((select nvl(max(seq), 0)+1 from tblMovieTitle),49,49);
 insert into tblMovieTitle(seq, tseq, mseq) values ((select nvl(max(seq), 0)+1 from tblMovieTitle),50,50);
+
+
+
+
+--tblExpertReview
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'팀 버튼 카카오에 스필버그 흑설탕을 듬뿍',(select seq from tblExpert where name= '박평식'),1);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7 ,'그의 노래, 그의 초콜릿이 주는 행복감에 취한다',(select seq from tblExpert where name= '이용철'),1);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5 ,'단 초콜릿 위에 더 단 토핑이 잔뜩',(select seq from tblExpert where name= '허남웅'),1);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7 ,'로알드 달보다는 폴 킹의 인장이 강한, 무해한 낙관의 세계',(select seq from tblExpert where name= '임수연'),1);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'달콤하지만 하늘에 뜰 정도는 아닌',(select seq from tblExpert where name= '김철홍'),1);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7 ,'뒷모습에 빛이 내릴 때, 옆모습에 어둠이 드리울 때 증명되는',(select seq from tblExpert where name= '이우빈'),1);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7 ,'낯선 문화를 향한 관용과 연대를 녹인 폴 킹의 달콤한 낙관',(select seq from tblExpert where name= '정재현'),1);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'결국 ‘읽을 줄 아는 사람’이 되는 노동자들의 낙관과 전략,',(select seq from tblExpert where name= '이자연'),1);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7 ,'<패딩턴> 사단이 제조한 MZ세대를 위한 초콜릿',(select seq from tblExpert where name= '김혜리'),1);
+
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'걸림돌을 제거하고 추진력 있게 나아간다',(select seq from tblExpert where name= '이유채'),4);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5 ,'쉼표 없이 분출하기 바쁜 감정의 레이스',(select seq from tblExpert where name= '허남웅'),4);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'각자도생해야 하는 시민의 나라, 그래서 눈물겨운 해피엔딩',(select seq from tblExpert where name= '이용철'),4);
+
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5 ,'석양을 붙잡고 추억을 꺼내다',(select seq from tblExpert where name= '박평식'),5);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'애틋함과 서러움, 유머와 결기를 오가는 생사의 로드무비',(select seq from tblExpert where name= '김소미'),5);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'삶과 죽음 사이 60년의 세월을 겸허히 돌아본다',(select seq from tblExpert where name= '조현나'),5);
+
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5 ,'보들보들 따스하나 ‘개밥에 도토리’도',(select seq from tblExpert where name= '박평식'),6);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5 ,'견공의 압박, ‘행복해야 돼!’',(select seq from tblExpert where name= '이용철'),6);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'JK필름의 김치찌개에, 강아지라는 치트키',(select seq from tblExpert where name= '임수연'),6);
+
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'세심한 관계성과 중독성 강한 노래. 어른 관객도 홀릴 만하다',(select seq from tblExpert where name= '조현나'),7);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'<아기상어>의 강점이 무엇인지 명확히 아는 뮤직버스터 세계관',(select seq from tblExpert where name= '이자연'),7);
+
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5 ,'타이틀백과 클로징 자막이 더 소름끼쳐',(select seq from tblExpert where name= '박평식'),8);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),4 ,'흥행의 불가사의',(select seq from tblExpert where name= '이용철'),8);
+
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5 ,'이름은 선명하지만 번호는 흐릿한 명함',(select seq from tblExpert where name= '박수용'),9);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5 ,'공들인 세계를 좀더 펼쳐 보였다면',(select seq from tblExpert where name= '이유채'),9);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5 ,'앞다퉈 질주하는 전투 속에 반박자씩 느리게 오는 쾌감',(select seq from tblExpert where name= '이자연'),9);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5 ,'다소 어수선한 이름 석자 지키기',(select seq from tblExpert where name= '정재현'),9);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5 ,'더 흥미로울 소재가 스테레오타입의 주인공으로 어떻게 평범해지는가',(select seq from tblExpert where name= '허남웅'),9);
+
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'급가속과 급변속으로 농락하네',(select seq from tblExpert where name= '박평식'),10);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'원작이 <만주인 후보>인가?',(select seq from tblExpert where name= '이용철'),10);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'반전의 연막탄을 색색으로 남발한다',(select seq from tblExpert where name= '허남웅'),10);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'제임스 본드와 제이슨 본을 아우르려는 감독의 야심',(select seq from tblExpert where name= '조현나'),10);
+
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7 ,'눈보라에 갇혀 살점을 뜯기다',(select seq from tblExpert where name= '박평식'),12);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),8 ,'멀고 길게 돌아가나 그 길은 의혹을 전제한 게 아니다',(select seq from tblExpert where name= '이용철'),12);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),8 ,'증명하려 들수록 미궁에 빠지는 인간 감정의 진실 혹은 아이러니',(select seq from tblExpert where name= '허남웅'),12);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),9 ,'진실공방을 표방해 자기 서사 쓰기의 버거움과 고립감을 그린다',(select seq from tblExpert where name= '김소미'),12);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'인간 주관의 불완정성에 대한 선처를 바라는 n번째 상소',(select seq from tblExpert where name= '김철홍'),12);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),8 ,'사운드와 이미지가 어긋난 진실에 관하여',(select seq from tblExpert where name= '오진우'),12);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7 ,'탈진실의 뉘앙스를 법정물에 적용하는 편의성엔 점차 의문이',(select seq from tblExpert where name= '이우빈'),12);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),8 ,'진술로 은유하는 시네마의 고유 미학',(select seq from tblExpert where name= '정재현'),12);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7 ,'콘텍스트로 꿰어낸 텍스트',(select seq from tblExpert where name= '유선아'),12);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),8 ,'정교한 카메라를 따라 관계의 피부를 절개하는 의심의 칼날',(select seq from tblExpert where name= '박수용'),12);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),9 ,'사실과 진실의 포물선이 교차할 때',(select seq from tblExpert where name= '김혜리'),12);
+
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7 ,'인간이 미안해. 터전을 지키려는 동물들의 착한 작당',(select seq from tblExpert where name= '이우빈'),13);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'평화를 불원하는 자들에 대한 재미있는 은유',(select seq from tblExpert where name= '이용철'),13);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7 ,'‘공존의 인간학’에 웃다가도 울컥',(select seq from tblExpert where name= '박평식'),14);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),9 ,'재회의 시간: 뉴아메리칸시네마, 아버지, 캣 스티븐스, 할 애슈비',(select seq from tblExpert where name= '이용철'),14);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7 ,'F학점을 받아야만 배울 수 있는 것이 있다',(select seq from tblExpert where name= '김철홍'),14);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),9 ,'결함뿐인 삶에 비탄이 몰아쳐도, 오늘은 내 곁의 약한 이를 지키리',(select seq from tblExpert where name= '정재현'),14);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),9 ,'닭장의 횃대 같은 삶에도 왼쪽 눈을 알아보는 친구가 주어진다. 앙트레 누',(select seq from tblExpert where name= '이자연'),14);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),9 ,'다른 이의 삶을 섣불리 재단 않고 천천히 알아가면 달라지는 것들',(select seq from tblExpert where name= '유선아'),14);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),9 ,'실망에 대한 가장 따뜻한 연구',(select seq from tblExpert where name= '김혜리'),14);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),8 ,'<샤이닝>의 무대에서 <죽은 시인의 사회>의 인물들이 펼치는 <미스 리틀 선샤인>',(select seq from tblExpert where name= '허남웅'),14);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5 ,'또 왔구나, 가사만 바꾼 할리우드 배뱅이굿',(select seq from tblExpert where name= '박평식'),16);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7 ,'너희에겐 벽과 덤불과 프리즘이었어',(select seq from tblExpert where name= '박평식'),17);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7 ,'전쟁터에선 누구나 괴물이 된다, 지금은 학교가 그곳이다',(select seq from tblExpert where name= '이용철'),17);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),9 ,'소수자 문제를 드러내는 영리한 플롯과 있는 그대로를 인정하는 따뜻한 시선',(select seq from tblExpert where name= '임수연'),17);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),9 ,'베테랑의 쇄신과 역동을 목도하는 감흥이 엔딩만큼 눈부시다',(select seq from tblExpert where name= '김소미'),17);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),9 ,'절벽의 끝에, 우리만의 빛',(select seq from tblExpert where name= '조현나'),17);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),9 ,'인간의 한계를 드러내는 빼어난 구성. 감독의 새로운 걸작',(select seq from tblExpert where name= '배동미'),17);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),8 ,'잘하는 걸 재차 잘해내버리는 거장의 괴력',(select seq from tblExpert where name= '김철홍'),17);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),9 ,'모두가 행복할 수 없기에 괴물로 보이는 둘만의 세계',(select seq from tblExpert where name= '오진우'),17);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),9 ,'각본은 두드러지고 연출은 스며들어 결국 완벽해지다',(select seq from tblExpert where name= '이유채'),17);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),8 ,'나의 원형으로 돌아갈 시간, 지난밤 비가 온 줄도 모르게',(select seq from tblExpert where name= '이자연'),17);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7 ,'가려진 무엇의 묵직한 무게, 오로지 그것의 힘',(select seq from tblExpert where name= '유선아'),17);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5 ,'어느 동물도 혐오스럽지 않게, 바른 표현',(select seq from tblExpert where name= '이용철'),18);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7 ,'권력이 영원할 줄 아는 사악한 바보들에게',(select seq from tblExpert where name= '박평식'),20);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'검사의 봄에 되돌아보는, 뱀의 욕망이 낳은 탄식과 울분의 밤',(select seq from tblExpert where name= '이용철'),20);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7 ,'여러모로 아슬아슬하다',(select seq from tblExpert where name= '안시환'),20);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7 ,'‘어떻게 성공했지?’라는 궁금증과 하나회를 향한 분노가 왔다 갔다',(select seq from tblExpert where name= '임수연'),20);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7 ,'‘전두광 영화’가 되지 않았다는 점이 놀랍다',(select seq from tblExpert where name= '이유채'),20);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'바둑을 오셀로로 뒤집으려는 병법의 하룻밤',(select seq from tblExpert where name= '유선아'),20);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5 ,'각설탕이 목에 걸린 기분',(select seq from tblExpert where name= '박평식'),22);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'허구는 힘이 세다, 그만큼 울어버렸다',(select seq from tblExpert where name= '이용철'),22);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5 ,'익숙한 일본 감성으로 풀어낸 기억상실 로맨스',(select seq from tblExpert where name= '김수영'),22);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5 ,'뭉툭하고 은근한 암시, 단호한 시선',(select seq from tblExpert where name= '유선아'),23);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'다큐에 버금가는 현실감, 고독의 공포',(select seq from tblExpert where name= '박평식'),23);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),8 ,'<소일렌트 그린>을 현실로 살아내야 할 줄이야, 하긴 그게 2022년이었으니',(select seq from tblExpert where name= '이용철'),23);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7 ,'자발적 선택으로 포장된 사회적 강요가 초래할 노년의 근미래, 아니 다가온 현재',(select seq from tblExpert where name= '허남웅'),23);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7 ,'고령화 시대의 미래, 그곳에 희망이 존재하냐고 묻는다면',(select seq from tblExpert where name= '조현나'),23);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),8 ,'신세란 무엇인가를 묻는 일본영화의 최선',(select seq from tblExpert where name= '김철홍'),23);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'담담해서 사무치는 노인들의 ‘사요나라’',(select seq from tblExpert where name= '정재현'),23);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'7년을 뛰어넘은 기술적 시도, 7년 전에 멈춘 농담들',(select seq from tblExpert where name= '이자연'),25);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),8 ,'드러냄과 감춤의 오묘한 리듬. 60년대 안토니오니에 버금가는 연출력',(select seq from tblExpert where name= '박평식'),26);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),8 ,'스스로를 아류화시키던 왕가위는 다시 자신의 영화세계를 구원한다',(select seq from tblExpert where name= '유지나'),26);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),9 ,'또 새로움! 왕가위의 스타일엔 유효기간이 없다',(select seq from tblExpert where name= '이명인'),26);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),8 ,'사랑할 때와 헤어질 때. 그 공기를 포착한 성숙한 영화',(select seq from tblExpert where name= '김영진'),26);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),8 ,'지구반바퀴를 돌아도 떨칠 수 없는, 이토록 간절한 사랑이여',(select seq from tblExpert where name= '황진미'),26);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),8 ,'인간이든 복제인간이든 옳은 행동만이 중요하다',(select seq from tblExpert where name= '김성훈'),27);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'잘 계승했으나 사유의 폭이 넓진 않다',(select seq from tblExpert where name= '박평식'),27);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7 ,'안드로이드는 양을 꿈꾸는가',(select seq from tblExpert where name= '이용철'),27);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),10 ,'죽기 전에 보아야 할 SF영화가 한편 늘었다',(select seq from tblExpert where name= '장영엽'),27);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),10 ,'35년간의 기다림, 마침내 응답받다',(select seq from tblExpert where name= '한동원'),27);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),9 ,'드니 빌뇌브는 포스트 리들리 스콧을 꿈꾸는가',(select seq from tblExpert where name= '허남웅'),27);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5 ,'족보 깔고 목청 돋워 체면치레',(select seq from tblExpert where name= '박평식'),28);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5 ,'100주년맞이 역사 바로 세우기 혹은 역사 지우기',(select seq from tblExpert where name= '이용철'),28);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7 ,'그들의 두 번째 100주년 영화를 보고 싶다는 소원이 생기다',(select seq from tblExpert where name= '김철홍'),28);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5 ,'지난 세기 디즈니의 영광의 순간들을 모아',(select seq from tblExpert where name= '박수용'),28);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'11살 고뇌가 몽실몽실',(select seq from tblExpert where name= '박평식'),29);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'조용한 귀염둥이가 할 말은 다한다',(select seq from tblExpert where name= '이용철'),29);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),8 ,'김다민의 상상력 학원이 구해줄 거야',(select seq from tblExpert where name= '김철홍'),29);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),8 ,'이상함을 주저하지 않는 과감한 상상력의 역량',(select seq from tblExpert where name= '이우빈'),29);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'어린이의 자주성에 관한 흥미롭고 달큰한 접근',(select seq from tblExpert where name= '정재현'),29);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),8 ,'내 마음속에도 막걸리를 알아보던 동춘이가 있는데',(select seq from tblExpert where name= '이자연'),29);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'불덩이로 방패로 젖은 눈으로 걷다',(select seq from tblExpert where name= '박평식'),30);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6 ,'쉽게 굽히지 않고 쉽게 미끄러지지 않고 오직 전진',(select seq from tblExpert where name= '이자연'),30);
+
+
+--31	인투 더 월드
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6,'못 먹어본 ‘더커로렌지’, 앞으로도 못 먹게 된',(select seq from tblExpert where name= '이용철'), 31);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),6,'생태주의적 유머로 그려낸 <오리 날다>',(select seq from tblExpert where name= '최현수'), 31);
+
+--32	외계+인 2부
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5,'엎질러진 물 다시 담기',(select seq from tblExpert where name= '박평식'), 32);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5,'모두가 조증 증후군',(select seq from tblExpert where name= '이용철'), 32);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5,'과유불급의 기획, 절치부심의 편집',(select seq from tblExpert where name= '허남웅'), 32);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7,'함께 리듬타긴 쉽지 않지만, 언젠가 다시 만나고 싶은 세계',(select seq from tblExpert where name= '김철홍'), 32);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5,'과유불급의 기획, 절치부심의 편집',(select seq from tblExpert where name= '정재현'), 32);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5,'모두가 조증 증후군',(select seq from tblExpert where name= '이자연'), 32);
+insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),5,'엎질러진 물 다시 담기',(select seq from tblExpert where name= '유선아'), 32);
+
+
+--33	오키쿠와 세계
+   insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7,'풍자와 해학이 질퍼덕질퍼덕',(select seq from tblExpert where name= '박평식'), 33);
+   insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),10,'세계를 인식해낸 자에게 무한한 배설의 축복이',(select seq from tblExpert where name= '김철홍'), 33);
+   insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),8,'몇번의 컬러 전환으로 힐끔 보이는 사랑과 세계',(select seq from tblExpert where name= '오진우'), 33);
+   insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),9,'사카모토 준지가 찍는 ‘얼굴’의 아름다움이 시대를 초월한다',(select seq from tblExpert where name= '이우빈'), 33);
+   insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),9,'<일출> <라탈랑트> <인정 종이풍선> 그리고 <오키쿠와 세계>로구나',(select seq from tblExpert where name= '이용철'), 33);
+
+
+--34	극장판 아이돌리쉬 세븐; LIVE 4bit BEYOND THE PERiOD DAY 2
+--35	오펜하이머
+   insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),8,'지성, 야심, 윤리의 빅뱅 그리고 잔해',(select seq from tblExpert where name= '박평식'), 35);
+   insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),9,'보자마자 20자평 쓰는 게 너무 힘든 경우',(select seq from tblExpert where name= '이용철'), 35);
+   insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7,'스펙터클 제로로 써내린 프로메테우스 탄원서',(select seq from tblExpert where name= '김철홍'), 35);
+   insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),9,'강렬한 빛과 후폭풍 같은 그림자로 구성된 오펜하이머의 시간',(select seq from tblExpert where name= '오진우'), 35);
+   insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),9,'작정하고 벼른 영화 작가의 펜촉, 비범한 잉크, 휘황한 필치',(select seq from tblExpert where name= '이우빈'), 35);
+
+--36	나의 올드오크
+   insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7,'''나눔과 투쟁''을 당부하며 떠나는 감독께 감사',(select seq from tblExpert where name= '박평식'), 36);
+   insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),8,'함께하는 한끼가 디올 백보다 소중함을 모른다면, 인간 실격',(select seq from tblExpert where name= '이용철'), 36);
+   insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7,'공감을 넘어 손잡고 행진하며 행동을 촉구하는 켄 로치의 여전한 저력',(select seq from tblExpert where name= '허남웅'), 36);
+   insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),8,'어떤 직설은 그 자체로 슬픔을 자아낸다',(select seq from tblExpert where name= '김소미'), 36);
+   insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),7,'어떤 비극의 순간에도 연대를 외치는 신념',(select seq from tblExpert where name= '조현나'), 36);
+   insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview),8,'이렇게 살 수도, 그렇게 죽을 수도 없으므로',(select seq from tblExpert where name= '유선아'), 36);
+
+
+--37	장인과 사위
+--38	메이 디셈버
+--39	극장판 아이돌리쉬 세븐; LIVE 4bit BEYOND THE PERiOD DAY 1
+
+--40	슬램덩크
+   insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview), 8,'너희 시간에만 가능한 로망, 걸작의 재확인',(select seq from tblExpert where name= '이용철'), 40);	
+   insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview), 7,'꺾이지 않는 마음, 변하지 않는 감동. 움직이는 만화의 힘',(select seq from tblExpert where name= '송경원'), 40);	
+   insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview), 8,'결과를 아는데도 이렇게 가슴 뛸 일이야!',(select seq from tblExpert where name= '허남웅'), 40);	
+
+
+--41	뽀로로 극장판 슈퍼스타 대모험
+   insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview), 7,'아동용을 넘어 가족용 영화로 거듭나신 뽀느님의 위엄',(select seq from tblExpert where name= '송경원'), 41);	
+   insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview), 6,'슬랩스틱과 속도감이 살아 있는 글로벌 애니메이션',(select seq from tblExpert where name= '황진미'), 41);
+
+--42	예수는 역사다
+   insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview), 4,'답은 정해져 있으니 넌 예수만 믿으면 된다는 영화',(select seq from tblExpert where name= '김보연'), 42);
+
+--43	크레센도 반 클라이번 콩쿠르 실황
+
+--44	부활 그 소망(날짜이상)
+
+--45	비욘드 유토피아
+    insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview), 8,'유토피아란 허상을 스스로 건너뛴 사람들에게 슬픔이 그만 멎기를',(select seq from tblExpert where name= '이자연'), 45);
+
+
+--46	노량
+    insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview), 6,'교실에서 바다로, 장엄한 사족으로',(select seq from tblExpert where name= '박평식'), 46);
+    insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview), 7,'서정과 역동의 무르익은 완급 조절',(select seq from tblExpert where name= '유선아'), 46);
+    insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview), 7,'어쨌든 기념비적인 시리즈로 남을 듯',(select seq from tblExpert where name= '이용철'), 46);
+    insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview), 6,'잊힐(힌) 얼굴들을 되살리는 선상의 백병전',(select seq from tblExpert where name= '이우빈'), 46);
+    insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview), 7,'죽음을 끝내기 위해 더 많은 죽음을 택한 숭고의 딜레마',(select seq from tblExpert where name= '임수연'), 46);
+
+
+
+
+--47	엔드 오브 에반게리온
+    insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview), 7,'세기말을 여전히 유효하게 만드는 이름',(select seq from tblExpert where name= '이용철'), 47);
+    insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview), 9,'애니메이션보다 큰 텍스트, 전세계 오타쿠의 마음을 LCL의 바다로',(select seq from tblExpert where name= '이우빈'), 47);
+
+
+--48	아네모네
+    insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview), 5,'재미난 설정과 지겨운 악다구니',(select seq from tblExpert where name= '박평식'), 48);
+    insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview), 5,'끝까지 봐야 한다, 전작처럼',(select seq from tblExpert where name= '이용철'), 48);
+    insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview), 4,'1차원적인 웃음을 꿋꿋이 이어나가는 정이랑',(select seq from tblExpert where name= '김현승'), 48);
+
+--49	걸즈 앤 판처 최종장 제4화
+
+--50	영화 스미코구라시-푸른 달밤의 마법의 아이
+
+    insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview), 5,'소파에 누워 군것질하듯',(select seq from tblExpert where name= '박평식'), 50);
+    insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview), 5,'정말 귀엽지만, 서사의 주인공으로서는 한계',(select seq from tblExpert where name= '이용철'), 50);
+    insert into tblExpertReview (seq, grade, content, eseq, mseq) values ((select nvl(max(seq), 0) + 1 from tblExpertReview), 6,'꿈이라는 정체성, 몽글몽글 차오르는 행복',(select seq from tblExpert where name= '이유채'), 50);

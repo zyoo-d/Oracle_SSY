@@ -1,3 +1,4 @@
+
 -- ex23_alter.sql
 /*
     DDL > 객체 조작
