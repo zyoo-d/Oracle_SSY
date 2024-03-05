@@ -1827,9 +1827,48 @@ select * from tblUser; -- hong	1150
 
 
 
+set serveroutput on;
+-- 프로시저 out 매개변수
+-- 1. 단일 레코드(단일 컬럼)
+-- 2. 레코드 전체
+-- 3. 다중 레코드(커서)
+create or replace procedure procTest(
+    pcnt out number,
+    pvrow out tblInsa%rowtype,
+    pcursor out sys_refcursor --커서 타입을 sys_refcursor 로 작성해야함    
+)
+is
+begin  
+    --1. 1행 1열
+    select count(*) into pcnt from tblInsa;
+    
+    --2. 1행 N열
+    select * into pvrow from tblInsa where num = 1010;
+    
+    --3. N행 N열 ******
+    open pcursor
+    for
+    select * from tblInsa; --일반적인 커서와는 다르게 구현부에서 커서를 정의
+end procTest;
+/
 
-
-
+declare
+    vcnt number;
+    vrow tblInsa%rowtype;
+    vcursor sys_refcursor;
+begin
+    procTest(vcnt, vrow, vcursor);
+    dbms_output.put_line(vcnt);
+    dbms_output.put_line(vrow.name || ','|| vrow.buseo);
+    
+    loop
+        fetch vcursor into vrow; --fetch vcursor into 행참조변수;
+        exit when vcursor%notfound;
+        
+        dbms_output.put_line(vrow.name || ',' || vrow.buseo); 
+    end loop;
+end;
+/
 
 
 
