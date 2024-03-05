@@ -1,0 +1,26 @@
+--tblReSupport.DML
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (1,TO_DATE('2024-1-1', 'YYYY-MM-DD'),0,TO_DATE('2024-7-1', 'YYYY-MM-DD'), '대기업SI취업희망');
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (2,TO_DATE('2024-1-2', 'YYYY-MM-DD'),90,TO_DATE('2024-7-1', 'YYYY-MM-DD'), '프론트엔드에서 백엔드개발자로 취업희망');
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (10,TO_DATE('2024-1-3', 'YYYY-MM-DD'),0,TO_DATE('2024-7-3', 'YYYY-MM-DD'), '컨설팅 기업 취업희망');
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (11,TO_DATE('2024-1-4', 'YYYY-MM-DD'),90,TO_DATE('2024-10-3', 'YYYY-MM-DD'), '');
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (12,TO_DATE('2024-1-5', 'YYYY-MM-DD'),0,TO_DATE('2024-7-5', 'YYYY-MM-DD'), '');
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (13,TO_DATE('2024-1-6', 'YYYY-MM-DD'),0,TO_DATE('2024-7-6', 'YYYY-MM-DD'), '');
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (14,TO_DATE('2024-1-7', 'YYYY-MM-DD'),90,TO_DATE('2024-10-6', 'YYYY-MM-DD'), '3개월간 주니어개발자로 일한 경험있음');
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (15,TO_DATE('2024-1-8', 'YYYY-MM-DD'),90,TO_DATE('2024-10-7', 'YYYY-MM-DD'), '');
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (16,TO_DATE('2024-1-9', 'YYYY-MM-DD'),0,TO_DATE('2024-7-9', 'YYYY-MM-DD'), '');
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (18,TO_DATE('2024-1-10', 'YYYY-MM-DD'),0,TO_DATE('2024-7-10', 'YYYY-MM-DD'), '금융권 취업희망');
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (27,TO_DATE('2024-1-11', 'YYYY-MM-DD'),0,TO_DATE('2024-7-11', 'YYYY-MM-DD'), '');
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (28,TO_DATE('2024-1-12', 'YYYY-MM-DD'),90,TO_DATE('2024-10-11', 'YYYY-MM-DD'), '');
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (30,TO_DATE('2024-1-13', 'YYYY-MM-DD'),0,TO_DATE('2024-7-13', 'YYYY-MM-DD'), '');
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (32,TO_DATE('2024-1-14', 'YYYY-MM-DD'),90,TO_DATE('2024-10-13', 'YYYY-MM-DD'), '서비스기업 취업희망');
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (33,TO_DATE('2024-1-15', 'YYYY-MM-DD'),0,TO_DATE('2024-7-15', 'YYYY-MM-DD'), '');
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (41,TO_DATE('2024-1-16', 'YYYY-MM-DD'),0,TO_DATE('2024-7-16', 'YYYY-MM-DD'), '연봉 3800이상 희망');
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (43,TO_DATE('2024-1-17', 'YYYY-MM-DD'),90,TO_DATE('2024-10-16', 'YYYY-MM-DD'), '데이터 전문 분야로 취업희망하며 빅데이터분석기사 자격증 있음');
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (45,TO_DATE('2024-1-18', 'YYYY-MM-DD'),90,TO_DATE('2024-10-17', 'YYYY-MM-DD'), '');
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (47,TO_DATE('2024-1-19', 'YYYY-MM-DD'),0,TO_DATE('2024-7-19', 'YYYY-MM-DD'), '스타트업 취업희망함');
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (48,TO_DATE('2024-1-20', 'YYYY-MM-DD'),90,TO_DATE('2024-10-19', 'YYYY-MM-DD'), '재택근무인 회사에 우선 지원');
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (49,TO_DATE('2024-1-21', 'YYYY-MM-DD'),90,TO_DATE('2024-10-20', 'YYYY-MM-DD'), '');
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (50,TO_DATE('2024-1-22', 'YYYY-MM-DD'),0,TO_DATE('2024-7-22', 'YYYY-MM-DD'), '가산디지털단지화 구로쪽에서 취업희망항');
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (52,TO_DATE('2024-1-23', 'YYYY-MM-DD'),0,TO_DATE('2024-7-23', 'YYYY-MM-DD'), '4월경 취업지원 연장여부 상담 희망함');
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (53,TO_DATE('2024-1-24', 'YYYY-MM-DD'),90,TO_DATE('2024-10-23', 'YYYY-MM-DD'), '');
+INSERT INTO tblReSupport (stupk, regdate, extperiod, enddate, memo) VALUES (57,TO_DATE('2024-1-25', 'YYYY-MM-DD'),0,TO_DATE('2024-7-25', 'YYYY-MM-DD'), '');
