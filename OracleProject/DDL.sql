@@ -1,125 +1,190 @@
 --상태정보 테이블
 
 --tblComSize.기업규모
+<<<<<<< HEAD
 --drop table tblComSize;
+=======
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblComSize (
  	sizepk number primary key,
  	comsize varchar2(20) NOT NULL
 );
+<<<<<<< HEAD
 --CREATE sequence seqComSize;
 
 --tblComCategory.기업분류
 --drop table tblComCategory;
+=======
+
+--tblComCategory.기업분류
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblComCategory (
  	catepk number primary key,
  	category varchar2(30) NOT NULL
 );
+<<<<<<< HEAD
 --CREATE sequence seqComCategory;
 
 --tblComIndustry.기업산업
 --drop table tblComIndustry;
+=======
+
+--tblComIndustry.기업산업
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblComIndustry (
     idstpk number primary key,
  	industry varchar2(30) NOT NULL
 );
+<<<<<<< HEAD
 --CREATE sequence seqComIndustry;
 
 --tblComLocation.기업소재지
 --drop table tblComLocation;
+=======
+
+--tblComLocation.기업소재지
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblComLocation (
  	locpk number primary key,
  	location varchar2(30) NOT NULL
 );
+<<<<<<< HEAD
 --CREATE sequence seqComLocation;
 
 --tblAdminStatus.관리자 재직 상태
 --drop table tblAdminStatus;
+=======
+
+--tblAdminStatus.관리자 재직 상태
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblAdminStatus (
  	admstspk number primary key,
  	admstatus varchar2(6) NOT NULL --재직(1)/휴직(2)/퇴사(3)
 );
+<<<<<<< HEAD
 --CREATE sequence seqAdminStatus;
 
 --tblTeacherStatus.교사의 재직상태 및 강의상태
 --drop table tblTeacherStatus;
+=======
+
+--tblTeacherStatus.교사의 재직상태 및 강의상태
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblTeacherStatus (
 	tstspk number primary key,
 	tstatus varchar2(30) NOT NULL --강의예정,강의중,대기중,휴직,퇴사
 );
 
+<<<<<<< HEAD
 --CREATE sequence seqTeacherStatus;
 
 --tblStudentStatus.학생상태
 --drop table tblStudentStatus;
+=======
+
+--tblStudentStatus.학생상태
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblStudentStatus (
  	stustspk number primary key,
  	stustatus varchar2(30) NOT NULL --수강예정/수강중/중도탈락/수료/취업/재수강/재취업지원/재취업지원완료
 );
+<<<<<<< HEAD
 --CREATE sequence seqStudentStatus;
 --tblOpenCourseStatus.개설과정상태
 --drop table tblOpenCourseStatus;
+=======
+--tblOpenCourseStatus.개설과정상태
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblOpenCourseStatus (
 	ocspk number primary key,
 	ocstatus varchar2(15) NOT NULL --개설예정/과정진행중/과정종료
 );
+<<<<<<< HEAD
 --CREATE sequence seqOpenCourseStatus;
 
 --tblHoliday.공휴일정보
 --drop table tblHoliday;
+=======
+--tblHoliday.공휴일정보
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblHoliday (
 	holpk number primary key,
  	holiday varchar2(50) NOT NULL,
  	holidate date NOT NULL
 );
+<<<<<<< HEAD
 --CREATE sequence seqHoliday;
 
 --tblAttendStandard.출석 상태별 기준 시간
 --drop table tblAttendStandard;
+=======
+
+--tblAttendStandard.출석 상태별 기준 시간
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblAttendStandard (
  	attstdpk number primary key,
  	attstdtime date NOT NULL
 );
+<<<<<<< HEAD
 --CREATE sequence seqAttendStandard;
 --tblAttendStatus.출석상태
 --drop table tblAttendStatus;
+=======
+--tblAttendStatus.출석상태
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblAttendStatus (
 	attstspk number primary key,
 	attstatus varchar2(30) NOT NULL
 );
+<<<<<<< HEAD
 --CREATE sequence seqAttendStatus;
+=======
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 --사용자정보
 
 
 --tblUser. 유저기본정보
+<<<<<<< HEAD
 --drop table tblUser;
+=======
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblUser (
 	userpk number primary key,
 	role varchar2(10) NOT NULL,
 	name varchar2(10) NOT NULL,
 	bdate date NOT NULL,
+<<<<<<< HEAD
 	tel number NOT NULL,
+=======
+	tel number NOT NULL unique,
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 	id varchar2(50) NOT NULL unique,
 	pw varchar2(100) NOT NULL, --최초등록시 pw는 주민번호 뒷자리
 	regdate date default sysdate
 );
 ALTER TABLE tblUser ADD CONSTRAINT role_check CHECK (role IN ('관리자','교사','학생'));
+<<<<<<< HEAD
 --CREATE sequence seqUser;
 
 --tblAdmin.관리자
 --drop table tblAdmin;
+=======
+
+--tblAdmin.관리자
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblAdmin (
  	admpk number primary key,
@@ -131,10 +196,15 @@ REFERENCES tblUser (userpk);
 
 ALTER table tblAdmin ADD CONSTRAINT FK_tblAdminStatus_TO_tblAdmin FOREIGN KEY (admstspk)
 REFERENCES tblAdminStatus (admstspk);
+<<<<<<< HEAD
 --CREATE sequence seqAdmin;
 
 --tblTeacher. 강사정보
 --drop table tblTeacher;
+=======
+
+--tblTeacher. 강사정보
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblTeacher (
 	tpk number primary key,
@@ -146,10 +216,15 @@ REFERENCES tblUser (userpk);
 ALTER table tblTeacher ADD CONSTRAINT FK_tblTeacherStatus_TO_tblTeacher FOREIGN KEY (tstspk)
 REFERENCES tblTeacherStatus (tstspk);
 
+<<<<<<< HEAD
 --CREATE sequence seqTeacher;
 
 --tblStudent.학생정보
 --drop table tblStudent;
+=======
+
+--tblStudent.학생정보
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblStudent (
 	stupk number primary key,
@@ -163,10 +238,15 @@ REFERENCES tblUser (userpk);
 ALTER table tblStudent ADD CONSTRAINT FK_tblStudentStatus_TO_tblStudent FOREIGN KEY (stustspk)
 REFERENCES tblStudentStatus (stustspk);
 
+<<<<<<< HEAD
 --CREATE sequence seqStudent;
 
 --tblSubject.과목정보
 --drop table tblSubject;
+=======
+
+--tblSubject.과목정보
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblSubject (
  	subpk number primary key,
@@ -176,12 +256,18 @@ create table tblSubject (
  	essential varchar2(1) NOT NULL
 );
 ALTER TABLE tblSubject ADD CONSTRAINT essential_check CHECK (essential IN ('Y', 'N'));
+<<<<<<< HEAD
 --CREATE sequence seqSubject;
+=======
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 --comment ON COLUMN tblSubject.subdetail IS '한 줄로 간단하게 요약하여 작성';
 --comment ON COLUMN tblSubject.subhour IS '120시간 > 120으로 입력';
 
 --tblPosSub.강의과목-강사정보
+<<<<<<< HEAD
 --drop table tblPosSub;
+=======
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblPosSub (
 	pspk number primary key,
@@ -194,15 +280,22 @@ REFERENCES tblSubject (subpk);
 ALTER table tblPosSub ADD CONSTRAINT FK_tblTeacher_TO_tblPosSub FOREIGN KEY (tpk)
 REFERENCES tblTeacher (tpk);
 
+<<<<<<< HEAD
 --CREATE sequence seqPosSub;
 
 
 --tblTextbook.
 --drop table tblTextbook;
+=======
+
+
+--tblTextbook.
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblTextbook (
 	bookpk number primary key,
 	tbname varchar2(100) NOT NULL,
+<<<<<<< HEAD
 	writer varchar2(10) NOT NULL,
 	publisher varchar2(100) NOT NULL
 );
@@ -211,6 +304,14 @@ create table tblTextbook (
 
 --tblSubjectTextbook.과목별교재
 --drop table tblSubjectTextbook;
+=======
+	writer varchar2(30) NOT NULL,
+	publisher varchar2(100) NOT NULL
+);
+
+
+--tblSubjectTextbook.과목별교재
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblSubjectTextbook (
  	subookpk number primary key,
@@ -222,10 +323,15 @@ REFERENCES tblSubject (subpk);
 
 ALTER table tblSubjectTextbook ADD CONSTRAINT FK_tblTextbook_TO_tblSubjectTextbook FOREIGN KEY (bookpk)
 REFERENCES tblTextbook (bookpk);
+<<<<<<< HEAD
 --CREATE sequence seqSubjectTextbook;
 
 --tblClassroom.강의실 정보
 --drop table tblClassroom;
+=======
+
+--tblClassroom.강의실 정보
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblClassroom (
 	crpk number primary key,
@@ -235,20 +341,30 @@ create table tblClassroom (
 );
 
 ALTER TABLE tblClassroom ADD CONSTRAINT crpossible_check CHECK (crpossible IN ('Y', 'N'));
+<<<<<<< HEAD
 --CREATE sequence seqClassroom;
 
 --tblCourse.과정정보
 --drop table tblCourse;
+=======
+
+--tblCourse.과정정보
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblCourse (
 	crspk number primary key,
 	crsname varchar2(100) NOT NULL,
 	crsduration number NOT NULL --훈련일수(ex.180일)
 );
+<<<<<<< HEAD
 --CREATE sequence seqCourse;
 
 --tblOnGoingSubject.과정별(개설)과목
 --drop table tblOnGoingSubject;
+=======
+
+--tblOnGoingSubject.과정별(개설)과목
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblOnGoingSubject (
 	ogsubpk number primary key,
@@ -262,12 +378,17 @@ REFERENCES tblCourse (crspk);
 ALTER table tblOnGoingSubject ADD CONSTRAINT FK_tblSubject_TO_tblOnGoingSubject FOREIGN KEY (subpk)
 REFERENCES tblSubject (subpk);
 
+<<<<<<< HEAD
 --CREATE sequence seqOnGoingSubject;
 
 
 
 --tblOpenCourse.개설된 과정의 정보
 --drop table tblOpenCourse;
+=======
+
+--tblOpenCourse.개설된 과정의 정보
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblOpenCourse (
 	ocpk number primary key,
@@ -294,10 +415,15 @@ REFERENCES tblOpenCourseStatus (ocspk);
 --comment ON COLUMN tblOpenCourse.tpk IS '강의과목의강사';
 --comment ON COLUMN tblOpenCourse.ocspk IS 'default:개설예정(1)';
 
+<<<<<<< HEAD
 --CREATE sequence seqOpenCourse;
 
 --tblRecruit.지원자정보
 --drop table tblRecruit;
+=======
+
+--tblRecruit.지원자정보
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblRecruit (
  	recpk number primary key,
@@ -310,6 +436,7 @@ create table tblRecruit (
 ALTER TABLE tblRecruit ADD CONSTRAINT result_check CHECK (result IN ('P', 'F')); 
 ALTER table tblRecruit ADD CONSTRAINT FK_tblOpenCourse_TO_tblRecruit FOREIGN KEY (ocpk)
 REFERENCES tblOpenCourse (ocpk);
+<<<<<<< HEAD
 --CREATE sequence seqRecruit;
 
 --tblCourseParticipants.과정 참여자 정보
@@ -332,6 +459,22 @@ REFERENCES tblOpenCourse (ocpk);
 --과정&&강사&&학생
 --tblExamInfo.시험정보
 --drop table tblExamInfo;
+=======
+
+--tblCourseParticipants.과정 참여자 정보
+
+create table tblCourseParticipants ( --복합키
+ 	
+ 	stupk number references tblStudent(stupk),
+ 	ocpk number references tblOpenCourse(ocpk),
+	
+	CONSTRAINT tblCourseParticipants_PK PRIMARY KEY (stupk,ocpk)
+);
+
+
+--과정&&강사&&학생
+--tblExamInfo.시험정보
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblExamInfo (
 	exinfopk number primary key,
@@ -347,10 +490,15 @@ REFERENCES tblSubject (subpk);
 ALTER table tblExamInfo ADD CONSTRAINT FK_tblOpenCourse_TO_tblExamInfo FOREIGN KEY (ocpk)
 REFERENCES tblOpenCourse (ocpk);
 
+<<<<<<< HEAD
 --CREATE sequence seqExamInfo;
 
 --tblExam. 시험문제
 --drop table tblExam;
+=======
+
+--tblExam. 시험문제
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblExam (
 	expk number primary key,
@@ -360,14 +508,20 @@ create table tblExam (
 ALTER table tblExam ADD CONSTRAINT FK_tblExamInfo_TO_tblExam FOREIGN KEY (exinfopk)
 REFERENCES tblExamInfo (exinfopk);
 
+<<<<<<< HEAD
 --CREATE sequence seqExam;
 
 --tblExamDone.학생시험답안정보
 --drop table tblExamDone;
+=======
+
+--tblExamDone.학생시험답안정보
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblExamDone (
  	edpk number primary key,
  	exanswer varchar2(4000) NOT NULL,
+<<<<<<< HEAD
  	cptpk number NOT NULL, --tblCourseParticipants과정참여자순서
 	expk number NOT NULL
 );
@@ -381,6 +535,22 @@ REFERENCES tblExam (expk);
 
 --tblGrade.시험별 학생 점수
 --drop table tblGrade;
+=======
+ 	stupk number NOT NULL,
+	ocpk number NOT NULL,
+	expk number NOT NULL,
+
+
+	CONSTRAINT  FK_tblCourseParticipants_TO_tblExamDone
+        FOREIGN KEY (stupk, ocpk) REFERENCES tblCourseParticipants(stupk, ocpk)
+	
+);
+ALTER table tblExamDone ADD CONSTRAINT FK_tblExam_TO_tblExamDone FOREIGN KEY (expk)
+REFERENCES tblExam (expk);
+
+
+--tblGrade.시험별 학생 점수
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblGrade (
  	gradepk number primary key,
@@ -393,10 +563,15 @@ REFERENCES tblStudent (stupk);
 
 ALTER table tblGrade ADD CONSTRAINT FK_tblExamDone_TO_tblGrade FOREIGN KEY (edpk)
 REFERENCES tblExamDone (edpk);
+<<<<<<< HEAD
 --CREATE sequence seqGrade;
 
 --tblTask.과제정보
 --drop table tblTask;
+=======
+
+--tblTask.과제정보
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblTask (
  	taskpk number primary key,
@@ -407,22 +582,38 @@ create table tblTask (
 ALTER table tblTask ADD CONSTRAINT FK_tblTeacher_TO_tblTask FOREIGN KEY (tpk)
 REFERENCES tblTeacher (tpk);
 
+<<<<<<< HEAD
 --CREATE sequence seqTask;
 
 --tblTaskSubmit.과제제출정보
 --drop table tblTaskSubmit;
+=======
+
+--tblTaskSubmit.과제제출정보
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblTaskSubmit (
  	tspk number primary key,
 	tsanswer varchar2(1000) NOT NULL,
 	correct varchar2(1) NULL,
 	taskpk number NOT NULL,
+<<<<<<< HEAD
 	cptpk number NOT NULL
+=======
+	stupk number NOT NULL,
+	ocpk number NOT NULL,
+
+
+
+	CONSTRAINT  FK_tblCourseParticipants_TO_tblTaskSubmit
+        FOREIGN KEY (stupk, ocpk) REFERENCES tblCourseParticipants(stupk, ocpk)
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 );
 ALTER TABLE tblTaskSubmit ADD CONSTRAINT correct_check CHECK (correct IN ('Y', 'N'));
 ALTER table tblTaskSubmit ADD CONSTRAINT FK_tblTask_TO_tblTaskSubmit FOREIGN KEY (taskpk)
 REFERENCES tblTask (taskpk);
 
+<<<<<<< HEAD
 ALTER table tblTaskSubmit ADD CONSTRAINT FK_tblCourseParticipants_TO_tblTaskSubmit FOREIGN KEY (cptpk)
 REFERENCES tblCourseParticipants (cptpk);
 
@@ -432,6 +623,12 @@ REFERENCES tblCourseParticipants (cptpk);
 --tblData.자료실(교사업로드)
 --drop table tblData;
 
+=======
+
+--추가기능
+--tblData.자료실(교사업로드)
+drop table tblData;
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 create table tblData (
 	datapk number primary key,
 	datatitle varchar2(50) NOT NULL,
@@ -443,10 +640,14 @@ create table tblData (
 ALTER table tblData ADD CONSTRAINT FK_tblTeacher_TO_tblData FOREIGN KEY (tpk)
 REFERENCES tblTeacher (tpk);
 
+<<<<<<< HEAD
 --CREATE sequence seqData;
 
 --tblBoard. 게시판
 --drop table tblBoard;
+=======
+--tblBoard. 게시판
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblBoard (
 	boardpk number primary key,
@@ -461,10 +662,15 @@ ALTER table tblBoard ADD CONSTRAINT FK_tblUser_TO_tblBoard FOREIGN KEY (userpk)
 REFERENCES tblUser (userpk);
 ALTER TABLE tblBoard ADD CONSTRAINT boardtype_check CHECK (boardtype IN ('자유게시판', '질문게시판'));
 
+<<<<<<< HEAD
 --CREATE sequence seqBoard;
 
 --tblComment.게시글에 대한 댓글
 --drop table tblComment;
+=======
+
+--tblComment.게시글에 대한 댓글
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblComment (
 	cmmpk number primary key,
@@ -478,10 +684,15 @@ REFERENCES tblUser (userpk);
 ALTER table tblComment ADD CONSTRAINT FK_tblBoard_TO_tblComment FOREIGN KEY (boardpk)
 REFERENCES tblBoard (boardpk);
 
+<<<<<<< HEAD
 --CREATE sequence seqComment;
 
 --tblConsulting.학생상담정보
 --drop table tblConsulting;
+=======
+
+--tblConsulting.학생상담정보
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblConsulting (
  	cltpk number primary key,
@@ -496,10 +707,15 @@ REFERENCES tblTeacher (tpk);
 ALTER table tblConsulting ADD CONSTRAINT FK_tblStudent_TO_tblConsulting FOREIGN KEY (stupk)
 REFERENCES tblStudent (stupk);
 
+<<<<<<< HEAD
 --CREATE sequence seqConsulting;
 
 --tblAttendance.출석정보
 --drop table tblAttendance;
+=======
+
+--tblAttendance.출석정보
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblAttendance (
 	attpk number primary key,
@@ -515,10 +731,15 @@ REFERENCES tblAttendStatus (attstspk);
 ALTER table tblAttendance ADD CONSTRAINT FK_tblStudent_TO_tblAttendance FOREIGN KEY (stupk)
 REFERENCES tblStudent (stupk);
 
+<<<<<<< HEAD
 --CREATE sequence seqAttendance;
 
 --tblCompany. 기업정보
 --drop table tblCompany;
+=======
+
+--tblCompany. 기업정보
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblCompany (
 	compk number primary key,
@@ -539,12 +760,17 @@ REFERENCES tblComIndustry (idstpk);
 ALTER table tblCompany ADD CONSTRAINT FK_tblComLocation_TO_tblCompany FOREIGN KEY (locpk)
 REFERENCES tblComLocation (locpk);
 
+<<<<<<< HEAD
 --CREATE sequence seqCompany;
 
 --tblItrsCompany.학생별관심기업
 --drop table tblItrsCompany;
 
 
+=======
+
+--tblItrsCompany.학생별관심기업
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 create table tblItrsCompany ( --복합키compk+stupk
  	compk number references tblCompany(compk),
  	stupk number references tblStudent(stupk),
@@ -552,11 +778,16 @@ create table tblItrsCompany ( --복합키compk+stupk
 	CONSTRAINT tblItrsCompany_PK PRIMARY KEY (compk, stupk)
 );
 
+<<<<<<< HEAD
 --CREATE sequence seqItrsCompany;
 
 --취업후
 --tblEmployedStd.취업한학생
 --drop table tblEmployedStd;
+=======
+--취업후
+--tblEmployedStd.취업한학생
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblEmployedStd (
 	stupk number primary key ,
@@ -568,10 +799,16 @@ ALTER table tblEmployedStd ADD CONSTRAINT FK_tblStudent_TO_tblEmployedStd FOREIG
 REFERENCES tblStudent (stupk);
 ALTER TABLE tblEmployedStd ADD CONSTRAINT insurance_check CHECK (insurance IN ('Y', 'N'));
 
+<<<<<<< HEAD
 --CREATE sequence seqEmployedStd;
 
 --tblReSupport.재취업지원
 --drop table tblReSupport;
+=======
+
+
+--tblReSupport.재취업지원
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblReSupport (
  	stupk number primary key,
@@ -583,6 +820,7 @@ create table tblReSupport (
 ALTER table tblReSupport ADD CONSTRAINT FK_tblEmployedStd_TO_tblReSupport FOREIGN KEY (stupk)
 REFERENCES tblEmployedStd (stupk);
 
+<<<<<<< HEAD
 --CREATE sequence seqReSupport;
 
 
@@ -631,43 +869,49 @@ REFERENCES tblEmployedStd (stupk);
 --
 ----SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
 --
---DROP TABLE "TBLCOMSIZE" CASCADE CONSTRAINTS;
---DROP TABLE "TBLCOMCATEGORY" CASCADE CONSTRAINTS;
---DROP TABLE "TBLCOMINDUSTRY" CASCADE CONSTRAINTS;
---DROP TABLE "TBLCOMLOCATION" CASCADE CONSTRAINTS;
---DROP TABLE "TBLADMINSTATUS" CASCADE CONSTRAINTS;
---DROP TABLE "TBLTEACHERSTATUS" CASCADE CONSTRAINTS;
---DROP TABLE "TBLSTUDENTSTATUS" CASCADE CONSTRAINTS;
---DROP TABLE "TBLOPENCOURSESTATUS" CASCADE CONSTRAINTS;
---DROP TABLE "TBLATTENDSTATUS" CASCADE CONSTRAINTS;
---DROP TABLE "TBLUSER" CASCADE CONSTRAINTS;
---DROP TABLE "TBLTEACHER" CASCADE CONSTRAINTS;
---DROP TABLE "TBLSTUDENT" CASCADE CONSTRAINTS;
---DROP TABLE "TBLSUBJECT" CASCADE CONSTRAINTS;
---DROP TABLE "TBLCLASSROOM" CASCADE CONSTRAINTS;
---DROP TABLE "TBLCOURSE" CASCADE CONSTRAINTS;
---DROP TABLE "TBLOPENCOURSE" CASCADE CONSTRAINTS;
---DROP TABLE "TBLCOURSEPARTICIPANTS" CASCADE CONSTRAINTS;
---DROP TABLE "TBLEXAMDONE" CASCADE CONSTRAINTS;
---DROP TABLE "TBLTASK" CASCADE CONSTRAINTS;
---DROP TABLE "TBLBOARD" CASCADE CONSTRAINTS;
---DROP TABLE "TBLCOMPANY" CASCADE CONSTRAINTS;
---DROP TABLE "TBLEMPLOYEDSTD" CASCADE CONSTRAINTS;
---DROP TABLE "TBLHOLIDAY" CASCADE CONSTRAINTS;
---DROP TABLE "TBLATTENDSTANDARD" CASCADE CONSTRAINTS;
---DROP TABLE "TBLRECRUIT" CASCADE CONSTRAINTS;
---DROP TABLE "TBLADMIN" CASCADE CONSTRAINTS;
---DROP TABLE "TBLPOSSUB" CASCADE CONSTRAINTS;
---DROP TABLE "TBLTEXTBOOK" CASCADE CONSTRAINTS;
---DROP TABLE "TBLSUBJECTTEXTBOOK" CASCADE CONSTRAINTS;
---DROP TABLE "TBLONGOINGSUBJECT" CASCADE CONSTRAINTS;
---DROP TABLE "TBLEXAMINFO" CASCADE CONSTRAINTS;
---DROP TABLE "TBLEXAM" CASCADE CONSTRAINTS;
---DROP TABLE "TBLGRADE" CASCADE CONSTRAINTS;
---DROP TABLE "TBLTASKSUBMIT" CASCADE CONSTRAINTS;
---DROP TABLE "TBLDATA" CASCADE CONSTRAINTS;
---DROP TABLE "TBLCOMMENT" CASCADE CONSTRAINTS;
---DROP TABLE "TBLCONSULTING" CASCADE CONSTRAINTS;
---DROP TABLE "TBLATTENDANCE" CASCADE CONSTRAINTS;
---DROP TABLE "TBLITRSCOMPANY" CASCADE CONSTRAINTS;
---DROP TABLE "TBLRESUPPORT" CASCADE CONSTRAINTS;
+=======
+
+
+--SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
+
+>>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
+DROP TABLE "TBLCOMSIZE" CASCADE CONSTRAINTS;
+DROP TABLE "TBLCOMCATEGORY" CASCADE CONSTRAINTS;
+DROP TABLE "TBLCOMINDUSTRY" CASCADE CONSTRAINTS;
+DROP TABLE "TBLCOMLOCATION" CASCADE CONSTRAINTS;
+DROP TABLE "TBLADMINSTATUS" CASCADE CONSTRAINTS;
+DROP TABLE "TBLTEACHERSTATUS" CASCADE CONSTRAINTS;
+DROP TABLE "TBLSTUDENTSTATUS" CASCADE CONSTRAINTS;
+DROP TABLE "TBLOPENCOURSESTATUS" CASCADE CONSTRAINTS;
+DROP TABLE "TBLATTENDSTATUS" CASCADE CONSTRAINTS;
+DROP TABLE "TBLUSER" CASCADE CONSTRAINTS;
+DROP TABLE "TBLTEACHER" CASCADE CONSTRAINTS;
+DROP TABLE "TBLSTUDENT" CASCADE CONSTRAINTS;
+DROP TABLE "TBLSUBJECT" CASCADE CONSTRAINTS;
+DROP TABLE "TBLCLASSROOM" CASCADE CONSTRAINTS;
+DROP TABLE "TBLCOURSE" CASCADE CONSTRAINTS;
+DROP TABLE "TBLOPENCOURSE" CASCADE CONSTRAINTS;
+DROP TABLE "TBLCOURSEPARTICIPANTS" CASCADE CONSTRAINTS;
+DROP TABLE "TBLEXAMDONE" CASCADE CONSTRAINTS;
+DROP TABLE "TBLTASK" CASCADE CONSTRAINTS;
+DROP TABLE "TBLBOARD" CASCADE CONSTRAINTS;
+DROP TABLE "TBLCOMPANY" CASCADE CONSTRAINTS;
+DROP TABLE "TBLEMPLOYEDSTD" CASCADE CONSTRAINTS;
+DROP TABLE "TBLHOLIDAY" CASCADE CONSTRAINTS;
+DROP TABLE "TBLATTENDSTANDARD" CASCADE CONSTRAINTS;
+DROP TABLE "TBLRECRUIT" CASCADE CONSTRAINTS;
+DROP TABLE "TBLADMIN" CASCADE CONSTRAINTS;
+DROP TABLE "TBLPOSSUB" CASCADE CONSTRAINTS;
+DROP TABLE "TBLTEXTBOOK" CASCADE CONSTRAINTS;
+DROP TABLE "TBLSUBJECTTEXTBOOK" CASCADE CONSTRAINTS;
+DROP TABLE "TBLONGOINGSUBJECT" CASCADE CONSTRAINTS;
+DROP TABLE "TBLEXAMINFO" CASCADE CONSTRAINTS;
+DROP TABLE "TBLEXAM" CASCADE CONSTRAINTS;
+DROP TABLE "TBLGRADE" CASCADE CONSTRAINTS;
+DROP TABLE "TBLTASKSUBMIT" CASCADE CONSTRAINTS;
+DROP TABLE "TBLDATA" CASCADE CONSTRAINTS;
+DROP TABLE "TBLCOMMENT" CASCADE CONSTRAINTS;
+DROP TABLE "TBLCONSULTING" CASCADE CONSTRAINTS;
+DROP TABLE "TBLATTENDANCE" CASCADE CONSTRAINTS;
+DROP TABLE "TBLITRSCOMPANY" CASCADE CONSTRAINTS;
+DROP TABLE "TBLRESUPPORT" CASCADE CONSTRAINTS;
