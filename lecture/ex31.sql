@@ -55,7 +55,7 @@ select level from dual
 
 select sysdate + level-1 from dual
     connect by level <= 5;
-    
+
 -- *** date자료형으로 원하는 기간을 생성하는 방법(기억!!!!)
 create or replace view vwDate
 as
@@ -144,7 +144,7 @@ begin
             select state from into vstate from tblDate
                             where to_char(regdate , 'yyyy-mm-dd') = to_char(vdate, 'yyyy-mm-dd');
             dbms_output.put_line(vstate);
-        else
+--        else
         
         end if;
         

@@ -4,21 +4,6 @@
 --select * from vwAT;
 --drop view vwAllStudent;
 
-----3. 교육생 정보 출력시 교육생 이름, 생년월일, 전화번호, 등록일, 수강(신청)횟수,상담일지건수를 출력한다. 
-----횟수 반환 함수
---
---create or replace function fnCntCP(
---    pstupk number
---) return number
---is
---declare
---    vcnt number;
---begin
---    return
---        select count(*) into vcnt from tblCourseParticipants where = pstupk;
---end fnCnt;
---/
-
 
 --전체학생 view
 create or replace view vwAllStudent
@@ -26,7 +11,7 @@ as
 select
     s.stupk as stupk,
     u.name as name,
-    u.bdate as bdate,
+    u.ssn as bdate,
     u.tel as tel,
     u.regdate as regdate,
     cp.ocpk as ocpk
@@ -42,15 +27,15 @@ as
 select
     t.tpk as tpk,
     u.name as name,
-    u.bdate as bdate,
+    u.ssn as bdate,
     u.tel as tel,
     u.regdate as regdate,
-    oc.cospk as cospk
+    oc.crspk as crspk
 from tblUser u right outer join tblTeacher t
                             on u.userpk = t.tpk
                 right outer join tblopencourse oc
                             on t.tpk = oc.tpk;
-select * from vwAllStudent;
+select * from vwAllTeacher;
 
 --전체 출석 view
 create or replace view vwAllAtt
@@ -102,8 +87,8 @@ select
 from vwAllStuAtt 
     where attenddate between to_date(20240201,'yyyymmdd') and to_date(20240301,'yyyymmdd');
 
---select * from vwStuAttByDate;
---select * from vwAllStuAtt;
+select * from vwStuAttByDate;
+select * from vwAllStuAtt;
 --select * from vwStuAttByCrs;
 
 --함수 (년/월/일) 선택시 비교 날짜를 반환하는 함수

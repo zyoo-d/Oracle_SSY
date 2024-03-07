@@ -22,8 +22,8 @@ alls.name as name,
 ed.exanswer as exanswer,
 g.score as score
 from tblOpenCourse oc 
-left outer join tblcourse c on c.crspk = oc.cospk
-left outer join vwAllTeacher allt on oc.cospk = allt.cospk
+left outer join tblcourse c on c.crspk = oc.crspk
+left outer join vwAllTeacher allt on oc.crspk = allt.crspk
 left outer join tblExaminfo ei on ei.ocpk = oc.ocpk 
 left outer join tblExam e on ei.exinfopk = e.exinfopk
 left outer join tblSubject s on s.subpk = ei.subpk
@@ -74,5 +74,6 @@ examdate as 시험일,
 tname as 교사명,
 examtype as 시험유형
 from vwAllExamResult;
-select * from vwExamByStu where 학생번호 = '8';
-select * from tblStudent;
+-- 프로시저로 만들기
+--select * from vwExamByStu where 학생번호 = '8';
+--select * from tblStudent;

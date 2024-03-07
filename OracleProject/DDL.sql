@@ -1,21 +1,17 @@
 --상태정보 테이블
 
 --tblComSize.기업규모
-<<<<<<< HEAD
+
 --drop table tblComSize;
-=======
->>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
 
 create table tblComSize (
  	sizepk number primary key,
  	comsize varchar2(20) NOT NULL
 );
-<<<<<<< HEAD
+
 --CREATE sequence seqComSize;
 
---tblComCategory.기업분류
---drop table tblComCategory;
-=======
+
 
 --tblComCategory.기업분류
 >>>>>>> b2d00177a7be23da68c95420b56914d9b8231bec
