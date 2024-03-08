@@ -1,7 +1,7 @@
 --개설과정별
 drop view vwAllExam;
 
-
+--모든 시험 관련 정보
 create or replace view vwAllExamResult
 as
 select 
@@ -46,7 +46,7 @@ select * from vwAllExamResult;
 
 select count(*),crspk from tblOnGoingSubject group by crspk;
 select crspk, count(crspk) from tblOnGoingSubject group by crspk;
-
+--과목별시험성적
 create or replace view vwExamBySub
 as
 select
@@ -60,7 +60,7 @@ name as 교육생명,
 examtype as 시험유형
 from vwAllExamResult;
 select * from vwExamBySub where 과목명 = '자바 (Java)';
-
+--학생별시험성적 
 create or replace view vwExamByStu
 as
 select

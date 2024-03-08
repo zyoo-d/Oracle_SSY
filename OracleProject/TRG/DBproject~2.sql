@@ -145,67 +145,67 @@ select * from tblAttendStatus;
 --end;
 --/
 
-CREATE OR REPLACE TRIGGER trgCheckInAtt
-BEFORE INSERT OR UPDATE ON tblAttendance
-FOR EACH ROW
-DECLARE
-    vattstspk tblAttendStatus.attstspk%type;
-    vcheckin TIMESTAMP;
-    vcheckout TIMESTAMP;
-BEGIN
-    -- 체크인 시간 가져오기
-    SELECT checkin INTO vcheckin FROM tblAttendance WHERE attpk = :new.attpk;
-
-    -- 출석 상태 결정 로직 (가상의 로직, 실제 조건에 맞게 수정 필요)
-    IF TO_TIMESTAMP(vcheckin, 'HH24:MI:SS')  <= TO_TIMESTAMP('09:10:59', 'HH24:MI:SS') THEN
-        vattstspk := 1; -- 예시 값, 실제 값에 맞게 조정
-    ELSIF TO_TIMESTAMP(vcheckin, 'HH24:MI:SS') between TO_TIMESTAMP('09:11:00', 'HH24:MI:SS') AND TO_TIMESTAMP('13:00:00', 'HH24:MI:SS') THEN
-        vattstspk := 2;
-    ELSE
-        vattstspk := 4; -- 예시 값
-    END IF;
-    -- 출석 상태 업데이트
-   update tblAttendance set attstspk = vattstspk where attpk = :new.attpk;
-
-EXCEPTION
-    WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('예외 처리: ' || SQLERRM);
-END;
-/
-
-CREATE OR REPLACE TRIGGER trgCheckOutAtt
-AFTER UPDATE ON tblAttendance
-FOR EACH ROW
-DECLARE
-    vattstspk tblAttendStatus.attstspk%type;
-    vDuration NUMBER;
-    vcheckin TIMESTAMP;
-    vcheckout TIMESTAMP;
-BEGIN
-    -- 체크인 시간 가져오기
-    SELECT checkin INTO vcheckin FROM tblAttendance WHERE attpk = :old.attpk;
-    -- 체크아웃 시간 가져오기
-    SELECT checkout INTO vcheckout FROM tblAttendance WHERE attpk = :old.attpk;
-    -- 체크아웃과 체크인의 차이(시간) 계산
-    vDuration := select extract( hour from att )-1 hours from (select checkout - checkin as att from tblAttendance) -- 일 단위 차이를 시간으로 변환
-
-
-    IF TO_TIMESTAMP(vcheckout, 'HH24:MI:SS')  >= TO_TIMESTAMP('17:50:00', 'HH24:MI:SS') THEN
-        vattstspk := 1; -- 예시 값, 실제 값에 맞게 조정
-    elsif vDuration >= 4 THEN
-        vattstspk := 3; -- 근무 시간이 4시간 이상일 경우
-    ELSE
-        vattstspk := 4; -- 근무 시간이 4시간 미만일 경우
-    END IF;
-
-    -- 출석 상태 업데이트
-     update tblAttendance set attstspk = vattstspk where attpk = :old.attpk;
-
-EXCEPTION
-    WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('예외 처리: ' || SQLERRM);
-END trgCheckOutAtt;
-/
+--CREATE OR REPLACE TRIGGER trgCheckInAtt
+--BEFORE INSERT OR UPDATE ON tblAttendance
+--FOR EACH ROW
+--DECLARE
+--    vattstspk tblAttendStatus.attstspk%type;
+--    vcheckin TIMESTAMP;
+--    vcheckout TIMESTAMP;
+--BEGIN
+--    -- 체크인 시간 가져오기
+--    SELECT checkin INTO vcheckin FROM tblAttendance WHERE attpk = :new.attpk;
+--
+--    -- 출석 상태 결정 로직 (가상의 로직, 실제 조건에 맞게 수정 필요)
+--    IF TO_TIMESTAMP(vcheckin, 'HH24:MI:SS')  <= TO_TIMESTAMP('09:10:59', 'HH24:MI:SS') THEN
+--        vattstspk := 1; -- 예시 값, 실제 값에 맞게 조정
+--    ELSIF TO_TIMESTAMP(vcheckin, 'HH24:MI:SS') between TO_TIMESTAMP('09:11:00', 'HH24:MI:SS') AND TO_TIMESTAMP('13:00:00', 'HH24:MI:SS') THEN
+--        vattstspk := 2;
+--    ELSE
+--        vattstspk := 4; -- 예시 값
+--    END IF;
+--    -- 출석 상태 업데이트
+--   update tblAttendance set attstspk = vattstspk where attpk = :new.attpk;
+--
+--EXCEPTION
+--    WHEN OTHERS THEN
+--        DBMS_OUTPUT.PUT_LINE('예외 처리: ' || SQLERRM);
+--END;
+--/
+--
+--CREATE OR REPLACE TRIGGER trgCheckOutAtt
+--AFTER UPDATE ON tblAttendance
+--FOR EACH ROW
+--DECLARE
+--    vattstspk tblAttendStatus.attstspk%type;
+--    vDuration NUMBER;
+--    vcheckin TIMESTAMP;
+--    vcheckout TIMESTAMP;
+--BEGIN
+--    -- 체크인 시간 가져오기
+--    SELECT checkin INTO vcheckin FROM tblAttendance WHERE attpk = :old.attpk;
+--    -- 체크아웃 시간 가져오기
+--    SELECT checkout INTO vcheckout FROM tblAttendance WHERE attpk = :old.attpk;
+--    -- 체크아웃과 체크인의 차이(시간) 계산
+--    vDuration := select extract( hour from att )-1 hours from (select checkout - checkin as att from tblAttendance) -- 일 단위 차이를 시간으로 변환
+--
+--
+--    IF TO_TIMESTAMP(vcheckout, 'HH24:MI:SS')  >= TO_TIMESTAMP('17:50:00', 'HH24:MI:SS') THEN
+--        vattstspk := 1; -- 예시 값, 실제 값에 맞게 조정
+--    elsif vDuration >= 4 THEN
+--        vattstspk := 3; -- 근무 시간이 4시간 이상일 경우
+--    ELSE
+--        vattstspk := 4; -- 근무 시간이 4시간 미만일 경우
+--    END IF;
+--
+--    -- 출석 상태 업데이트
+--     update tblAttendance set attstspk = vattstspk where attpk = :old.attpk;
+--
+--EXCEPTION
+--    WHEN OTHERS THEN
+--        DBMS_OUTPUT.PUT_LINE('예외 처리: ' || SQLERRM);
+--END trgCheckOutAtt;
+--/
 
 --create or replace view vwDate
 --as

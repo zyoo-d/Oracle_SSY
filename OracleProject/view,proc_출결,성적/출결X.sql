@@ -4,7 +4,8 @@
 --select * from vwAT;
 --drop view vwAllStudent;
 
-
+select * from tblopencourse;
+desc tblCourseParticipants;
 --전체학생 view
 create or replace view vwAllStudent
 as
@@ -14,11 +15,14 @@ select
     u.ssn as bdate,
     u.tel as tel,
     u.regdate as regdate,
-    cp.ocpk as ocpk
+    cp.ocpk as ocpk,
+    oc.ocname as ocname
 from tblUser u right outer join tblStudent s
                             on u.userpk = s.stupk 
                 right outer join tblCourseParticipants cp
-                            on s.stupk = cp.stupk;
+                            on s.stupk = cp.stupk
+                    left outer join tblOpenCourse oc
+                            on cp.ocpk = oc.ocpk;
 select * from vwAllStudent;
 
 --전체선생 뷰
@@ -41,6 +45,7 @@ select * from vwAllTeacher;
 create or replace view vwAllAtt
 as
 select
+    a.attpk as attpk,
     a.stupk as stupk,
     a.attenddate as attenddate,
     a.checkin as checkin,
@@ -56,8 +61,11 @@ select * from vwAllAtt;
 -- 모든 교육생 출결조회
 create or replace view vwAllStuAtt
 as
-select  alls.name,
+select  
+        alla.attpk,
+        alls.name,
         alls.ocpk,
+        alls.ocname,
         alla.attenddate,
         alla.checkin,
         alla.checkout,
@@ -69,8 +77,11 @@ select  alls.name,
 --특정과정의 교육생의 출결조회
 create or replace view vwStuAttByCrs
 as
-select  alls.name,
+select  
+alla.attpk,
+alls.name,
         alls.ocpk,
+         alls.ocname,
         alla.attenddate,
         alla.checkin,
         alla.checkout,
@@ -79,6 +90,7 @@ from vwAllStudent alls
     right outer join vwAllAtt alla on alla.stupk = alls.stupk
         where alls.ocpk = 6
         order by alla.attenddate desc;
+        
 --기간별 전체 출석현황 조회
 create or replace view vwStuAttByDate
 as
