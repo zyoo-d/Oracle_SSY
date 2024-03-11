@@ -1,5 +1,5 @@
 --개설과정 상태 변경에 따른 강의실, 학생, 강사, 지원사 상태 update 트리거
-CREATE TABLE tblOnGoingCrs AS SELECT ocpk,crpk,tpk,ocspk FROM tblOpencourse where ocspk = 2;
+CREATE TABLE tblOnGoingCrs AS SELECT oc.ocpk, oc.crpk, oc.tpk,oc.ocspk,cp.stupk FROM tblOpencourse OC  left outer join tblcourseparticipants cp on oc.ocpk = cp.ocpk where ocspk = 2;
 
 CREATE OR REPLACE TRIGGER trgChangeCRStatus_room
 AFTER UPDATE OF ocspk ON tblOpencourse
@@ -42,6 +42,8 @@ EXCEPTION
     dbms_output.put_line('에러 발생: ' || SQLERRM);
 END;
 /
+SELECT * FROM tblOnGoingCrs;
+
 
 CREATE OR REPLACE TRIGGER trgChangeCRStatus_Student
 BEFORE UPDATE OF ocspk ON tblOpencourse
@@ -94,3 +96,5 @@ EXCEPTION
     dbms_output.put_line('에러 발생: ' || SQLERRM);
 END trgChangeCRStatus_recruit;
 /
+
+

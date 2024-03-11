@@ -170,7 +170,8 @@ left outer join tblExamdone ed on ed.expk = e.expk
 left outer join tblGrade g on g.edpk = ed.edpk 
 left outer join tblClassRoom cr on cr.crpk =  oc.crpk
 left outer join vwAllStudent alls on alls.stupk = ed.stupk;
-
+--select * from vwAllExamResult;
+--select * from tblExamdone;
 --과목별시험성적
 create or replace view vwExamBySub
 as
@@ -185,7 +186,8 @@ name as 교육생명,
 examtype as 시험유형
 from vwAllExamResult;
 select * from vwExamBySub where 과목명 = '자바 (Java)';
---학생별시험성적 
+
+--학생별성적응시내역
 create or replace view vwExamByStu
 as
 select
@@ -199,4 +201,5 @@ examdate as 시험일,
 tname as 교사명,
 examtype as 시험유형
 from vwAllExamResult;
+
 

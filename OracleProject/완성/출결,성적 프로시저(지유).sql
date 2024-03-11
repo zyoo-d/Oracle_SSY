@@ -1,7 +1,8 @@
 --출결,성적 프로시저(지유)
 --특정 과정 학생 출결 조회
-select * from vwAllAttend;
 
+select * from vwAllAttend;
+set SERVEROUTPUT on;
 create or replace procedure procAttByCrs(
     pocpk number
 )
@@ -10,17 +11,20 @@ is
     vocname vwAllAttend.ocname%type;
 begin
     select distinct ocname into vocname from vwAllAttend where ocpk=pocpk;
-        dbms_output.put_line('========'||vocname||'수강생 출결현황'||'========');
+        dbms_output.put_line('================================'||vocname||'수강생 출결현황'||'========================================');
     for vrow in vcursor loop
-
-              dbms_output.put_line('  |일자:  '||vrow.regdate||'  |  '||vrow.name||'  |IN:  '||nvl(to_char(vrow.checkin,'hh24:mi:ss'),'XX:XX:XX')||'  |OUT:  '||nvl(to_char(vrow.checkout,'hh24:mi:ss'),'XX:XX:XX')||'  |  '||vrow.status||'  |  '||vrow.ocname);
-
+            if vrow.status <> '출석' then
+             
+              dbms_output.put_line('  |일자:  '||vrow.regdate||'  |  '||NVL(vrow.name,'LLL')||'  |IN:  '||'XX:XX:XX'||'  |OUT:  '||'XX:XX:XX'||'  |  '||Rpad(vrow.status,7)||'  |  '||vrow.ocname);
+            else
+               dbms_output.put_line('  |일자:  '||vrow.regdate||'  |  '||NVL(vrow.name,'LLL')||'  |IN:  '||nvl(to_char(vrow.checkin,'hh24:mi:ss'),'XX:XX:XX')||'  |OUT:  '||nvl(to_char(vrow.checkout,'hh24:mi:ss'),'XX:XX:XX')||'  |  '||Rpad(vrow.status,7)||'  |  '||vrow.ocname);
+            end if;
     end loop;
 end;
 /
 
 begin
-    procAttByCrs(2);
+    procAttByCrs(1);
 end;
 /
 --특정 기간 출결조회
@@ -33,7 +37,7 @@ is
 begin
         dbms_output.put_line('================================'||pstart||'-'||pend||'수강생 출결'||'================================');
     for vrow in vcursor loop
-            dbms_output.put_line('  |일자:  '||vrow.regdate||'  |  '||vrow.name||'  |IN:  '||nvl(to_char(vrow.checkin,'hh24:mi:ss'),'XX:XX:XX')||'  |OUT:  '||nvl(to_char(vrow.checkout,'hh24:mi:ss'),'XX:XX:XX')||'  |  '||vrow.status||'  |  '||vrow.ocname);
+            dbms_output.put_line('  |일자:  '||vrow.regdate||'  |  '||NVL(vrow.name,'LLL')||'  |IN:  '||nvl(to_char(vrow.checkin,'hh24:mi:ss'),'XX:XX:XX')||'  |OUT:  '||nvl(to_char(vrow.checkout,'hh24:mi:ss'),'XX:XX:XX')||'  |  '||Rpad(vrow.status,7) ||'  |  '||vrow.ocname);
 
 
     end loop;
@@ -45,7 +49,22 @@ begin
 end;
 /
 
-
+--학생별 출결 조회
+create or replace procedure procAttByDate(
+    pstupk number
+)
+is
+    vname vwAllAttend.name%type;
+    cursor vcursor is select * from vwAllAttend;
+begin
+    select distinct name into vname from vwAllAttend where stupk = pstupk;
+        dbms_output.put_line('================================================'||vname||'수강생 출결현황'||'================================================');
+    for vrow in vcursor loop
+            dbms_output.put_line('  |일자:  '||vrow.regdate||'  |  '||NVL(vrow.name,'LLL')||'  |IN:  '||nvl(to_char(vrow.checkin,'hh24:mi:ss'),'XX:XX:XX')||'  |OUT:  '||nvl(to_char(vrow.checkout,'hh24:mi:ss'),'XX:XX:XX')||'  |  '||Rpad(vrow.status,7)||'  |  '||vrow.ocname);
+    end loop;
+end;
+/
+call procAttByDate(202);
 
 --학생별 출결 조회
 create or replace procedure procAttByDate(
@@ -53,12 +72,12 @@ create or replace procedure procAttByDate(
 )
 is
     vname vwAllAttend.name%type;
-    cursor vcursor is select * from vwAllAttend where stupk = pstupk;
+    cursor vcursor is select * from vwAllAttend;
 begin
     select distinct name into vname from vwAllAttend where stupk = pstupk;
         dbms_output.put_line('================================================'||vname||'수강생 출결현황'||'================================================');
     for vrow in vcursor loop
-            dbms_output.put_line('  |일자:  '||vrow.regdate||'  |  '||vname||'  |IN:  '||nvl(to_char(vrow.checkin,'hh24:mi:ss'),'XX:XX:XX')||'  |OUT:  '||nvl(to_char(vrow.checkout,'hh24:mi:ss'),'xx:xx:xx')||'  |  '||vrow.status||'  |  '||vrow.ocname);
+            dbms_output.put_line('  |일자:  '||vrow.regdate||'  |  '||NVL(vrow.name,'LLL')||'  |IN:  '||nvl(to_char(vrow.checkin,'hh24:mi:ss'),'XX:XX:XX')||'  |OUT:  '||nvl(to_char(vrow.checkout,'hh24:mi:ss'),'XX:XX:XX')||'  |  '||Rpad(vrow.status,7)||'  |  '||vrow.ocname);
     end loop;
 end;
 /
@@ -106,7 +125,7 @@ begin
         fetch vcursor into vrow;
         exit when vcursor%notfound;
         if vrow.regdate between vstart and vend and vrow.ocname is not null then   
-                    dbms_output.put_line('  |일자:  '||vrow.regdate||'  |  '||vrow.name||'  |IN:  '||nvl(to_char(vrow.checkin,'hh24:mi:ss'),'XX:XX:XX')||'  |OUT:  '||nvl(to_char(vrow.checkout,'hh24:mi:ss'),'xx:xx:xx')||'  |  '||vrow.status||'  |  '||vrow.ocname);
+                    dbms_output.put_line('  |일자:  '||vrow.regdate||'  |  '||NVL(vrow.name,'LLL')||'  |IN:  '||nvl(to_char(vrow.checkin,'hh24:mi:ss'),'XX:XX:XX')||'  |OUT:  '||nvl(to_char(vrow.checkout,'hh24:mi:ss'),'XX:XX:XX')||'  |  '||Rpad(vrow.status,7)||'  |  '||vrow.ocname);
 
         else
             null;
@@ -115,6 +134,7 @@ begin
     close vcursor;
 end;
 /
+
 --학생별 총점계산함수(시험+출결)
 create or replace function fnTotalGrade(
     pstupk number,
@@ -122,14 +142,14 @@ create or replace function fnTotalGrade(
 )return number
 is
 begin
-    return fnTotalScore(pstupk,pocpk)*0.8+fnTotalAttScore(pstupk,pocpk)*0.2;
+    return round(fnTotalScore(pstupk,pocpk)*0.8+fnTotalAttScore(pstupk,pocpk)*0.2,0);
 end;
 /
 
 declare
     vresult number;
 begin
-    vresult := fnTotalGrade(91,4);
+    vresult := fnTotalGrade(1,1);
     dbms_output.put_line(vresult);
 end;
 /
@@ -159,7 +179,9 @@ begin
     end if;
     end loop;
     close vcursor;
-    return round(vscore/vwt,2);
+    return case 
+                when vwt = 0 then 1
+                else round(vscore/vwt,0) end;
 end;
 /
 
@@ -181,10 +203,13 @@ is
     cursor vcursor is select * from vwAllAttend;
     vattdate number;
     valldate number;
+    vstartdate date;
+    vholiday number;
+
 begin
-    
     select crsduration into valldate from tblCourse where crspk = (select distinct crspk from vwAllAttend where ocpk = pocpk);
-    
+    select regdate into vstartdate from tblopencourse where ocpk = pocpk;
+    select count(*) into vholiday from tblHoliday where holidate between vstartdate and vstartdate+valldate-1 ;
     vattdate:= 0;
     
     open vcursor;
@@ -199,8 +224,18 @@ begin
         end if;
     end loop;
     close vcursor;
-    return round(vattdate/valldate*100,2);
+    valldate := valldate-vholiday;
+    return case when vattdate is null then 1
+                when valldate is null then 1
+                else round(vattdate/(valldate)*100,2) end;
 end;
 /
 
 
+declare
+    vresult number;
+begin
+ vresult := fnTotalAttScore(33,2);
+dbms_output.put_line(vresult);
+end;
+/
