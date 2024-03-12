@@ -1,45 +1,53 @@
 --출결,성적 프로시저(지유)
 --특정 과정 학생 출결 조회
-
+select * from tblattendstatus;
 select * from vwAllAttend;
 set SERVEROUTPUT on;
 create or replace procedure procAttByCrs(
     pocpk number
 )
 is
-    cursor vcursor is select * from vwAllAttend where ocpk = pocpk and ocname is not null;
+    cursor vcursor is select * from vwAllAttend;
     vocname vwAllAttend.ocname%type;
+    vregdate tblOpenCourse.regdate%type;
 begin
+    select regdate into vregdate from tblOpenCourse where ocpk = pocpk;
     select distinct ocname into vocname from vwAllAttend where ocpk=pocpk;
         dbms_output.put_line('================================'||vocname||'수강생 출결현황'||'========================================');
     for vrow in vcursor loop
-            if vrow.status <> '출석' then
-             
-              dbms_output.put_line('  |일자:  '||vrow.regdate||'  |  '||NVL(vrow.name,'LLL')||'  |IN:  '||'XX:XX:XX'||'  |OUT:  '||'XX:XX:XX'||'  |  '||Rpad(vrow.status,7)||'  |  '||vrow.ocname);
+        if vrow.stupk is null and vrow.regdate between vregdate and sysdate then 
+           
+                dbms_output.put_line('  |일자:  '||vrow.regdate||'  -----------------------  '||Rpad(vrow.status,8) ||' -------------------------- 출결 내용 없음-------------------------------');
+            elsif vrow.stupk is not null and vrow.regdate between vregdate and sysdate then 
+                dbms_output.put_line('  |일자:  '||vrow.regdate||'  |  '||vrow.name||'  |IN:  '||nvl(to_char(vrow.checkin,'hh24:mi:ss'),'XX:XX:XX')||'  |OUT:  '||nvl(to_char(vrow.checkout,'hh24:mi:ss'),'XX:XX:XX')||'  |  '||Rpad(vrow.status,7) ||'  |  '||vrow.ocname);
             else
-               dbms_output.put_line('  |일자:  '||vrow.regdate||'  |  '||NVL(vrow.name,'LLL')||'  |IN:  '||nvl(to_char(vrow.checkin,'hh24:mi:ss'),'XX:XX:XX')||'  |OUT:  '||nvl(to_char(vrow.checkout,'hh24:mi:ss'),'XX:XX:XX')||'  |  '||Rpad(vrow.status,7)||'  |  '||vrow.ocname);
-            end if;
+                null;
+        end if;
     end loop;
 end;
 /
 
 begin
-    procAttByCrs(1);
+    procAttByCrs(5);
 end;
 /
+select * from vwalldate;
 --특정 기간 출결조회
 create or replace procedure procAttByDate(
     pstart number,
     pend number
 )
 is
-    cursor vcursor is select * from vwAllAttend where to_number(to_char(regdate, 'yymmdd')) between pstart and pend and ocname is not null;
+    cursor vcursor is select * from vwAllAttend where to_number(to_char(regdate, 'yymmdd')) between pstart and pend;
 begin
         dbms_output.put_line('================================'||pstart||'-'||pend||'수강생 출결'||'================================');
     for vrow in vcursor loop
-            dbms_output.put_line('  |일자:  '||vrow.regdate||'  |  '||NVL(vrow.name,'LLL')||'  |IN:  '||nvl(to_char(vrow.checkin,'hh24:mi:ss'),'XX:XX:XX')||'  |OUT:  '||nvl(to_char(vrow.checkout,'hh24:mi:ss'),'XX:XX:XX')||'  |  '||Rpad(vrow.status,7) ||'  |  '||vrow.ocname);
+        if vrow.ocname is null then
+         dbms_output.put_line('  |일자:  '||vrow.regdate||'  -----------------------  '||Rpad(vrow.status,8) ||' -------------------------- 출결 내용 없음-------------------------------');
 
-
+        else        
+            dbms_output.put_line('  |일자:  '||vrow.regdate||'  |  '||vrow.name||'  |IN:  '||nvl(to_char(vrow.checkin,'hh24:mi:ss'),'XX:XX:XX')||'  |OUT:  '||nvl(to_char(vrow.checkout,'hh24:mi:ss'),'XX:XX:XX')||'  |  '||Rpad(vrow.status,7) ||'  |  '||vrow.ocname);
+        end if;
     end loop;
 end;
 /
@@ -56,38 +64,35 @@ create or replace procedure procAttByDate(
 is
     vname vwAllAttend.name%type;
     cursor vcursor is select * from vwAllAttend;
+    vregdate tblOpenCourse.regdate%type;
+    vocpk number;
 begin
+    select ocpk into vocpk from tblcourseparticipants where stupk = pstupk;
+    select regdate into vregdate from tblOpenCourse where ocpk = vocpk;
     select distinct name into vname from vwAllAttend where stupk = pstupk;
         dbms_output.put_line('================================================'||vname||'수강생 출결현황'||'================================================');
     for vrow in vcursor loop
-            dbms_output.put_line('  |일자:  '||vrow.regdate||'  |  '||NVL(vrow.name,'LLL')||'  |IN:  '||nvl(to_char(vrow.checkin,'hh24:mi:ss'),'XX:XX:XX')||'  |OUT:  '||nvl(to_char(vrow.checkout,'hh24:mi:ss'),'XX:XX:XX')||'  |  '||Rpad(vrow.status,7)||'  |  '||vrow.ocname);
+      
+        if vrow.stupk is null and vrow.regdate between vregdate and sysdate then 
+           
+                dbms_output.put_line('  |일자:  '||vrow.regdate||'  -----------------------  '||Rpad(vrow.status,8) ||' -------------------------- 출결 내용 없음-------------------------------');
+            elsif vrow.stupk = pstupk and vrow.regdate between vregdate and sysdate then 
+                dbms_output.put_line('  |일자:  '||vrow.regdate||'  |  '||vrow.name||'  |IN:  '||nvl(to_char(vrow.checkin,'hh24:mi:ss'),'XX:XX:XX')||'  |OUT:  '||nvl(to_char(vrow.checkout,'hh24:mi:ss'),'XX:XX:XX')||'  |  '||Rpad(vrow.status,7) ||'  |  '||vrow.ocname);
+            else
+                null;
+        end if;
     end loop;
 end;
 /
 call procAttByDate(202);
 
---학생별 출결 조회
-create or replace procedure procAttByDate(
-    pstupk number
-)
-is
-    vname vwAllAttend.name%type;
-    cursor vcursor is select * from vwAllAttend;
-begin
-    select distinct name into vname from vwAllAttend where stupk = pstupk;
-        dbms_output.put_line('================================================'||vname||'수강생 출결현황'||'================================================');
-    for vrow in vcursor loop
-            dbms_output.put_line('  |일자:  '||vrow.regdate||'  |  '||NVL(vrow.name,'LLL')||'  |IN:  '||nvl(to_char(vrow.checkin,'hh24:mi:ss'),'XX:XX:XX')||'  |OUT:  '||nvl(to_char(vrow.checkout,'hh24:mi:ss'),'XX:XX:XX')||'  |  '||Rpad(vrow.status,7)||'  |  '||vrow.ocname);
-    end loop;
-end;
-/
-call procAttByDate(202);
+
 
 --(년/월/일) 출석 조회
 --procAttByYMD('YEAR',2024);
---procAttByYMD('MONTH',202402);
+call procAttByYMD('MONTH',202402);
 --procAttByYMD('DAY',20240205);
-CALL procAttByYMD('DAY',20240205);
+--CALL procAttByYMD('DAY',20240205);
 
 create or replace procedure procAttByYMD(
     pstandard varchar2,
@@ -124,9 +129,11 @@ begin
     loop
         fetch vcursor into vrow;
         exit when vcursor%notfound;
-        if vrow.regdate between vstart and vend and vrow.ocname is not null then   
-                    dbms_output.put_line('  |일자:  '||vrow.regdate||'  |  '||NVL(vrow.name,'LLL')||'  |IN:  '||nvl(to_char(vrow.checkin,'hh24:mi:ss'),'XX:XX:XX')||'  |OUT:  '||nvl(to_char(vrow.checkout,'hh24:mi:ss'),'XX:XX:XX')||'  |  '||Rpad(vrow.status,7)||'  |  '||vrow.ocname);
+        if vrow.regdate between vstart and vend and vrow.ocname is null then   
+            dbms_output.put_line('  |일자:  '||vrow.regdate||'  -----------------------  '||Rpad(vrow.status,8) ||' -------------------------- 출결 내용 없음-------------------------------');
 
+        elsif vrow.regdate between vstart and vend and vrow.ocname is not null then   
+            dbms_output.put_line('  |일자:  '||vrow.regdate||'  |  '||NVL(vrow.name,'LLL')||'  |IN:  '||nvl(to_char(vrow.checkin,'hh24:mi:ss'),'XX:XX:XX')||'  |OUT:  '||nvl(to_char(vrow.checkout,'hh24:mi:ss'),'XX:XX:XX')||'  |  '||Rpad(vrow.status,7)||'  |  '||vrow.ocname);
         else
             null;
         end if;

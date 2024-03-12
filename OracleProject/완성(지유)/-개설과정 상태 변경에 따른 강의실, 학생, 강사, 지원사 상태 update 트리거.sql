@@ -43,8 +43,6 @@ EXCEPTION
 END;
 /
 SELECT * FROM tblOnGoingCrs;
-
-
 CREATE OR REPLACE TRIGGER trgChangeCRStatus_Student
 BEFORE UPDATE OF ocspk ON tblOpencourse
 FOR EACH ROW
@@ -96,5 +94,3 @@ EXCEPTION
     dbms_output.put_line('에러 발생: ' || SQLERRM);
 END trgChangeCRStatus_recruit;
 /
-
-
